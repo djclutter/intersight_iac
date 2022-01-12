@@ -18,7 +18,6 @@ import subprocess
 import os
 import re
 import requests
-import sys
 import validating
 from easy_functions import policies_parse
 from easy_functions import sensitive_var_value
@@ -246,36 +245,47 @@ def create_terraform_workspaces(jsonData, easy_jsonData, org):
         print(f'\n-------------------------------------------------------------------------------------------\n')
      
 def intersight_org_check(home, org, args):
-    # Login to Intersight API
-    api_client = credentials.config_credentials(home, args)
+    check_org = True
+    while check_org == True:
+        question = input(f'Do You Want to Check Intersight for the Organization {org}?  Enter "Y" or "N" [Y]: ')
+        if question == 'Y' or question == '':
+            # Login to Intersight API
+            api_client = credentials.config_credentials(home, args)
 
-    #=============================================================
-    # Create Intersight API instance and Verify if the Org Exists
-    #=============================================================
-    api_handle = organization_api.OrganizationApi(api_client)
-    query_filter = f"Name eq '{org}'"
-    kwargs = dict(filter=query_filter)
-    org_list = api_handle.get_organization_organization_list(**kwargs)
-    if not org_list.results:
-        api_body = {
-            "ClassId":"mo.MoRef",
-            "Name":org,
-            "ObjectType":"organization.Organization"
-        }
-        organization = api_handle.create_organization_organization(api_body)
-        org_2nd_list = api_handle.get_organization_organization_list(**kwargs)
-        if org_2nd_list.results:
-            org_moid = org_2nd_list.results[0].moid
+            #=============================================================
+            # Create Intersight API instance and Verify if the Org Exists
+            #=============================================================
+            api_handle = organization_api.OrganizationApi(api_client)
+            query_filter = f"Name eq '{org}'"
+            kwargs = dict(filter=query_filter)
+            org_list = api_handle.get_organization_organization_list(**kwargs)
+            if not org_list.results:
+                api_body = {
+                    "ClassId":"mo.MoRef",
+                    "Name":org,
+                    "ObjectType":"organization.Organization"
+                }
+                organization = api_handle.create_organization_organization(api_body)
+                org_2nd_list = api_handle.get_organization_organization_list(**kwargs)
+                if org_2nd_list.results:
+                    org_moid = org_2nd_list.results[0].moid
+                    print(f'\n-------------------------------------------------------------------------------------------\n')
+                    print(f'  Organization {org} has the Moid of {org_moid},')
+                    print(f'  which was just Created.')
+                    print(f'\n-------------------------------------------------------------------------------------------\n')
+            elif org_list.results:
+                org_moid = org_list.results[0].moid
+                print(f'\n-------------------------------------------------------------------------------------------\n')
+                print(f'  Organization {org} has the Moid of {org_moid},')
+                print(f'  which already exists.')
+                print(f'\n-------------------------------------------------------------------------------------------\n')
+            check_org = False
+        elif question == 'N':
+            check_org = False
+        else:
             print(f'\n-------------------------------------------------------------------------------------------\n')
-            print(f'  Organization {org} has the Moid of {org_moid},')
-            print(f'  which was just Created.')
+            print(f'  Error!! Invalid Value.  Please enter "Y" or "N".')
             print(f'\n-------------------------------------------------------------------------------------------\n')
-    elif org_list.results:
-        org_moid = org_list.results[0].moid
-        print(f'\n-------------------------------------------------------------------------------------------\n')
-        print(f'  Organization {org} has the Moid of {org_moid},')
-        print(f'  which already existed.')
-        print(f'\n-------------------------------------------------------------------------------------------\n')
 
     print(f'\n-------------------------------------------------------------------------------------------\n')
     print(f'  Proceedures Complete!!! Closing Environment and Exiting Script.')
@@ -605,7 +615,7 @@ def process_wizard(easy_jsonData, jsonData):
     #  Easy Deploy - VMware M2 Boot Server Profiles
     elif '-_domain_-' in main_menu:
         policy_list = [
-            # 'quick_start_pools',
+            'quick_start_pools',
             'quick_start_domain_policies',
             'quick_start_lan_san_policies',
             'quick_start_ucs_chassis',
@@ -840,46 +850,43 @@ def process_wizard(easy_jsonData, jsonData):
 
         type = 'policies'
         if 'quick_start_domain_policies' in policy or 'quick_start_rack_policies' in policy:
-            # if 'domain' in policy:
-            #     kwargs = {'primary_dns': '208.67.220.220', 'secondary_dns': ''}
-            #     kwargs.update({'server_type':'FIAttached'})
-            #     vlan_policy,vsan_a,vsan_b,fc_ports,mtu = quick_start(
-            #         name_prefix, org, type
-            #         ).domain_policies(
-            #         jsonData, easy_jsonData, **kwargs
-            #     )
-            #      kwargs.update({'vlan_policy':vlan_policy["vlan_policy"],'vlans':vlan_policy["vlans"]})
-            #      kwargs.update({'vsan_a':vsan_a,'vsan_b':vsan_b,'fc_ports':fc_ports})
-            #      kwargs.update({'mtu':mtu})
-            # else:
-            #     kwargs.update({'server_type':'Standalone'})
-            #     kwargs.update({'fc_ports':[]})
-            #     type = 'policies'
-            #     quick_start(name_prefix, org, type).standalone_policies(jsonData, easy_jsonData)
-            kwargs = {
-                'primary_dns': '10.60.1.17',
-                'secondary_dns': '10.50.110.50',
-                'server_type': 'FIAttached',
-                'vlan_policy': 'kzoucs1',
-                'vlans': '1,708-710,714,715,852,899,904,909,1057',
-                'vsan_a': 100,
-                'vsan_b': 200,
-                'fc_ports': [1, 2, 3, 4],
-                'mtu':9216
-            }
-            quick_start(name_prefix, org, type).server_policies(jsonData, easy_jsonData, **kwargs)
+            Config = True
+            if 'domain' in policy:
+                # kwargs = {'primary_dns': '208.67.220.220', 'secondary_dns': ''}
+                kwargs.update({'server_type':'FIAttached'})
+                Config,vlan_policy,vsan_a,vsan_b,fc_ports,mtu = quick_start(
+                    name_prefix, org, type
+                    ).domain_policies(
+                    jsonData, easy_jsonData, **kwargs
+                )
+                if Config == True:
+                    kwargs.update({'vlan_policy':vlan_policy["vlan_policy"],'vlans':vlan_policy["vlans"],'native_vlan':vlan_policy["native_vlan"]})
+                    kwargs.update({'vsan_a':vsan_a,'vsan_b':vsan_b,'fc_ports':fc_ports})
+                    kwargs.update({'mtu':mtu})
+            else:
+                kwargs.update({'server_type':'Standalone'})
+                kwargs.update({'fc_ports':[]})
+                type = 'policies'
+                Config = quick_start(name_prefix, org, type).standalone_policies(jsonData, easy_jsonData)
+            if not Config == False:
+                # kwargs = {'primary_dns': '208.67.220.220', 'secondary_dns': '', 'server_type': 'FIAttached', 'vlan_policy': 'asgard-ucs', 'vlans': '1-99', 'native_vlan': '1', 'vsan_a': 100, 'vsan_b': 200, 'fc_ports': [1, 2, 3, 4], 'mtu': 9216}
+                quick_start(name_prefix, org, type).server_policies(jsonData, easy_jsonData, **kwargs)
         elif 'quick_start_lan_san_policies' in policy:
             type = 'policies'
-            quick_start(domain_prefix, org, type).lan_san_policies(jsonData, easy_jsonData, **kwargs)
+            if not Config == False:
+                quick_start(domain_prefix, org, type).lan_san_policies(jsonData, easy_jsonData, **kwargs)
         elif policy == 'quick_start_vmware_m2':
-            quick_start(name_prefix, org, type).vmware_m2()
-            kwargs.update({'boot_order_policy':'VMware_M2_pxe'})
+            if not Config == False:
+                quick_start(name_prefix, org, type).vmware_m2()
+                kwargs.update({'boot_order_policy':'VMware_M2_pxe'})
         elif policy == 'quick_start_vmware_raid1':
-            quick_start(name_prefix, org, type).vmware_raid1()
-            kwargs.update({'boot_order_policy':'VMware_Raid1_pxe'})
+            if not Config == False:
+                quick_start(name_prefix, org, type).vmware_raid1()
+                kwargs.update({'boot_order_policy':'VMware_Raid1_pxe'})
         elif 'quick_start_server_profile' in policy:
-            type = 'profiles'
-            quick_start(domain_prefix, org, type).server_profiles(jsonData, easy_jsonData, **kwargs)
+            if not Config == False:
+                type = 'profiles'
+                quick_start(domain_prefix, org, type).server_profiles(jsonData, easy_jsonData, **kwargs)
 
     return org
 

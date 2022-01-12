@@ -124,11 +124,30 @@ class quick_start(object):
                     templateVars["serial_number_fabric_b"] = serial_b
 
                     # VLAN Pool
-                    print(f'\n-------------------------------------------------------------------------------------------\n')
-                    print(f'  IMPORTANT NOTE: The FCoE VLAN will be assigned based on the VSAN Identifier.')
-                    print(f'                  Be sure to exclude the VSAN for Fabric A and B from the VLAN Pool.')
-                    print(f'\n-------------------------------------------------------------------------------------------\n')
-                    VlanList,vlanListExpanded = vlan_pool()
+                    valid = False
+                    while valid == False:
+                        print(f'\n-------------------------------------------------------------------------------------------\n')
+                        print(f'  IMPORTANT NOTE: The FCoE VLAN will be assigned based on the VSAN Identifier.')
+                        print(f'                  Be sure to exclude the VSAN for Fabric A and B from the VLAN Pool.')
+                        print(f'\n-------------------------------------------------------------------------------------------\n')
+                        VlanList,vlanListExpanded = vlan_pool()
+                        
+                        nativeVlan = input('Do you want to configure one of these VLANs as the Native VLAN?  [press enter to skip]: ')
+                        if nativeVlan == '':
+                            valid = True
+                        else:
+                            native_count = 0
+                            for vlan in vlanListExpanded:
+                                if int(nativeVlan) == int(vlan):
+                                    native_count = 1
+                            if not native_count == 1:
+                                print(f'\n-------------------------------------------------------------------------------------------\n')
+                                print(f'  Error!! The Native VLAN "{nativeVlan}" was not in the VLAN Policy List.')
+                                print(f'  VLAN Policy List is: "{VlanList}"')
+                                print(f'\n-------------------------------------------------------------------------------------------\n')
+                            else:
+                                valid = True
+
 
                     #_______________________________________________________________________
                     #
@@ -146,7 +165,7 @@ class quick_start(object):
 
                     templateVars["multicast_policy"] = templateVars["name"]
                     templateVars["descr"] = f'{templateVars["name"]} VLAN Policy'
-                    templateVars["native_vlan"] = ''
+                    templateVars["native_vlan"] = nativeVlan
                     templateVars["vlan_list"] = VlanList
                     policies_vxan(name_prefix, org, 'policies').quick_start_vlan(**templateVars)
 
@@ -511,8 +530,9 @@ class quick_start(object):
                             print(f'      "{server}",')
                         print(f'    ]')
                     print(f'  VLAN Pool: "{VlanList}"')
-                    print(f'  VSAN Fabric A: "{templateVars["vsan_id_A"]}"')
-                    print(f'  VSAN Fabric B: "{templateVars["vsan_id_B"]}"')
+                    if len(templateVars["fc_converted_ports"]) > 0:
+                        print(f'  VSAN Fabric A: "{templateVars["vsan_id_A"]}"')
+                        print(f'  VSAN Fabric B: "{templateVars["vsan_id_B"]}"')
                     print(f'\n-------------------------------------------------------------------------------------------\n')
                     valid_confirm = False
                     while valid_confirm == False:
@@ -734,18 +754,19 @@ class quick_start(object):
                             templateVars["port_role_fcoe_uplinks"] = []
                             templateVars["port_role_servers"] = port_role_servers
 
-                            for x in fabrics:
-                                xlower = x.lower()
-                                templateVars["name"] = f'{domain_name}-{xlower}'
-                                if x == 'A':
-                                    templateVars["port_channel_fc_uplinks"] = Fabric_A_fc_port_channels
-                                else:
-                                    templateVars["port_channel_fc_uplinks"] = Fabric_B_fc_port_channels
-                                templateVars["port_role_fc_uplinks"] = []
+                            if len(templateVars["fc_converted_ports"]) > 0:
+                                for x in fabrics:
+                                    xlower = x.lower()
+                                    templateVars["name"] = f'{domain_name}-{xlower}'
+                                    if x == 'A':
+                                        templateVars["port_channel_fc_uplinks"] = Fabric_A_fc_port_channels
+                                    else:
+                                        templateVars["port_channel_fc_uplinks"] = Fabric_B_fc_port_channels
+                                    templateVars["port_role_fc_uplinks"] = []
 
-                                # Write Policies to Template File
-                                templateVars["template_file"] = '%s.jinja2' % (templateVars["template_type"])
-                                write_to_template(self, **templateVars)
+                                    # Write Policies to Template File
+                                    templateVars["template_file"] = '%s.jinja2' % (templateVars["template_type"])
+                                    write_to_template(self, **templateVars)
 
                             # Close the Template file
                             templateVars["template_file"] = 'template_close.jinja2'
@@ -818,12 +839,25 @@ class quick_start(object):
                 print(f'  Error!! Invalid Value.  Please enter "Y" or "N".')
                 print(f'\n-------------------------------------------------------------------------------------------\n')
         
-        vlan_policy = {'vlan_policy':f'{domain_name}','vlans':VlanList}
-        vsan_a = templateVars["vsan_id_A"]
-        vsan_b = templateVars["vsan_id_B"]
-        fc_ports = templateVars["fc_converted_ports"]
-        mtu = templateVars["mtu"]
-        return vlan_policy,vsan_a,vsan_b,fc_ports,mtu
+        if configure == 'Y' or configure == '':
+            vlan_policy = {'vlan_policy':f'{domain_name}','vlans':VlanList,'native_vlan':nativeVlan}
+            if len(templateVars["fc_converted_ports"]) > 0:
+                vsan_a = templateVars["vsan_id_A"]
+                vsan_b = templateVars["vsan_id_B"]
+            else:
+                vsan_a = 0
+                vsan_b = 0
+            fc_ports = templateVars["fc_converted_ports"]
+            mtu = templateVars["mtu"]
+            configure = True
+        elif configure == 'N':
+            vlan_policy = {}
+            vsan_a = 0
+            vsan_b = 0
+            fc_ports = []
+            mtu = 1500
+            configure = False
+        return configure,vlan_policy,vsan_a,vsan_b,fc_ports,mtu
 
     #==============================================
     # LAN and SAN Policies
@@ -1088,15 +1122,18 @@ class quick_start(object):
                             write_to_template(self, **templateVars)
                             templateVars["initial_write"] = False
 
-                            names = ['MGMT', 'VMOTION', 'STORAGE', 'DATA']
+                            names = [kwargs["vlan_policy"], 'MGMT', 'VMOTION', 'STORAGE', 'DATA']
                             for x in names:
-                                if x == 'MGMT':
+                                if x == kwargs["vlan_policy"]:
+                                    allowed_vlans = kwargs["vlans"]
+                                    native_vlan = kwargs["native_vlan"]
+                                elif x == 'MGMT':
                                     allowed_vlans = mgmt_vlan
                                     native_vlan = mgmt_vlan
-                                elif x == 'MGMT':
+                                elif x == 'VMOTION':
                                     allowed_vlans = vmotion_vlan
                                     native_vlan = vmotion_vlan
-                                elif x == 'MGMT':
+                                elif x == 'STORAGE':
                                     allowed_vlans = storage_vlan
                                     native_vlan = storage_vlan
                                 elif x == 'DATA':
@@ -1286,14 +1323,16 @@ class quick_start(object):
                                         'mac_address_allocation_type':'POOL',
                                         'mac_address_pool':f'{vname}-{fab}',
                                         'name':f'{vname}-{fab}',
-                                        'placement_pci_link':0,
-                                        'placement_pci_order':Order,
-                                        'placement_slot_id':'MLOM',
-                                        'placement_switch_id':fab
+                                        'pci_link':0,
+                                        'pci_order':Order,
+                                        'slot_id':'MLOM',
+                                        'switch_id':fab
                                     }
                                     templateVars["vnics"].append(vnic)
                                     Order += 1
 
+                            print(templateVars["vnics"])
+                            exit
                             # Write Policies to Template File
                             templateVars["template_file"] = '%s.jinja2' % (templateVars["template_type"])
                             write_to_template(self, **templateVars)
@@ -1334,10 +1373,10 @@ class quick_start(object):
                                         'fibre_channel_qos_policy':'FC_QoS',
                                         'name':f'HBA-{fab}',
                                         'persistent_lun_bindings':False,
-                                        'placement_pci_link':0,
-                                        'placement_pci_order':Order,
-                                        'placement_slot_id':'MLOM',
-                                        'placement_switch_id':fab,
+                                        'pci_link':0,
+                                        'pci_order':Order,
+                                        'slot_id':'MLOM',
+                                        'switch_id':fab,
                                         'wwpn_allocation_type':'POOL',
                                         'wwpn_pool':f'VMware-{fab}',
                                     }
@@ -1570,14 +1609,14 @@ class quick_start(object):
                             write_to_template(self, **templateVars)
                             templateVars["initial_write"] = False
 
-                            names = ['DATA', 'MGMT', 'MIGRATION', 'STORAGE']
+                            names = ['DATA', 'MGMT', 'VMOTION', 'STORAGE']
                             fabrics = ['A', 'B']
                             for nam in names:
                                 for fab in fabrics:
                                     if nam == 'MGMT' and fab == 'A': key_id = 'A'
                                     elif nam == 'MGMT' and fab == 'B': key_id = 'B'
-                                    elif nam == 'MIGRATION' and fab == 'A': key_id = 'C'
-                                    elif nam == 'MIGRATION' and fab == 'B': key_id = 'D'
+                                    elif nam == 'VMOTION' and fab == 'A': key_id = 'C'
+                                    elif nam == 'VMOTION' and fab == 'B': key_id = 'D'
                                     elif nam == 'STORAGE' and fab == 'A': key_id = 'E'
                                     elif nam == 'STORAGE' and fab == 'B': key_id = 'F'
                                     elif nam == 'DATA' and fab == 'A': key_id = '1'
@@ -1796,9 +1835,9 @@ class quick_start(object):
                     while valid == False:
                         templateVars["Description"] = 'IMC Access VLAN Identifier'
                         templateVars["varInput"] = 'Enter the VLAN ID for the IMC Access Policy.'
-                        templateVars["varDefault"] = 1
+                        templateVars["varDefault"] = 4
                         templateVars["varName"] = 'IMC Access Policy VLAN ID'
-                        templateVars["minNum"] = 1
+                        templateVars["minNum"] = 4
                         templateVars["maxNum"] = 4094
                         imc_vlan = varNumberLoop(**templateVars)
                         if server_type == 'FIAttached':
@@ -2959,6 +2998,12 @@ class quick_start(object):
                 print(f'\n-------------------------------------------------------------------------------------------\n')
                 print(f'  Error!! Invalid Value.  Please enter "Y" or "N".')
                 print(f'\n-------------------------------------------------------------------------------------------\n')
+
+        if configure == 'Y' or configure == '':
+            configure = True
+        elif configure == 'N':
+            configure = False
+        return configure
 
     #==============================================
     # VMware M2 - Boot and Storage Policies
