@@ -8,6 +8,6 @@ ethernet_adapter_policies = {
     adapter_template = "VMware"
     description      = "VMware Ethernet Adapter Policy"
     organization     = "default"
-    tags = []
+    tags             = []
   }
 }

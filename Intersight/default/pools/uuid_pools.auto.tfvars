@@ -14,7 +14,7 @@ uuid_pools = {
         # to   = "0000-0000000003E7"
       },
     }
-    organization     = "default"
-    tags             = []
+    organization = "default"
+    tags         = []
   }
 }

@@ -23,6 +23,10 @@ lan_connectivity_policies = {
         mac_address_allocation_type     = "POOL"
         mac_address_pool                = "MGMT-A"
         name                            = "MGMT-A"
+        placement_pci_link              = 0
+        placement_pci_order             = 0
+        placement_slot_id               = "MLOM"
+        placement_switch_id             = "A"
       },
       "MGMT-B" = {
         cdn_source                      = "vnic"
@@ -34,6 +38,10 @@ lan_connectivity_policies = {
         mac_address_allocation_type     = "POOL"
         mac_address_pool                = "MGMT-B"
         name                            = "MGMT-B"
+        placement_pci_link              = 0
+        placement_pci_order             = 1
+        placement_slot_id               = "MLOM"
+        placement_switch_id             = "B"
       },
       "VMOTION-A" = {
         cdn_source                      = "vnic"
@@ -45,6 +53,10 @@ lan_connectivity_policies = {
         mac_address_allocation_type     = "POOL"
         mac_address_pool                = "VMOTION-A"
         name                            = "VMOTION-A"
+        placement_pci_link              = 0
+        placement_pci_order             = 2
+        placement_slot_id               = "MLOM"
+        placement_switch_id             = "A"
       },
       "VMOTION-B" = {
         cdn_source                      = "vnic"
@@ -56,6 +68,10 @@ lan_connectivity_policies = {
         mac_address_allocation_type     = "POOL"
         mac_address_pool                = "VMOTION-B"
         name                            = "VMOTION-B"
+        placement_pci_link              = 0
+        placement_pci_order             = 3
+        placement_slot_id               = "MLOM"
+        placement_switch_id             = "B"
       },
       "STORAGE-A" = {
         cdn_source                      = "vnic"
@@ -67,6 +83,10 @@ lan_connectivity_policies = {
         mac_address_allocation_type     = "POOL"
         mac_address_pool                = "STORAGE-A"
         name                            = "STORAGE-A"
+        placement_pci_link              = 0
+        placement_pci_order             = 4
+        placement_slot_id               = "MLOM"
+        placement_switch_id             = "A"
       },
       "STORAGE-B" = {
         cdn_source                      = "vnic"
@@ -78,6 +98,10 @@ lan_connectivity_policies = {
         mac_address_allocation_type     = "POOL"
         mac_address_pool                = "STORAGE-B"
         name                            = "STORAGE-B"
+        placement_pci_link              = 0
+        placement_pci_order             = 5
+        placement_slot_id               = "MLOM"
+        placement_switch_id             = "B"
       },
       "DATA-A" = {
         cdn_source                      = "vnic"
@@ -89,6 +113,10 @@ lan_connectivity_policies = {
         mac_address_allocation_type     = "POOL"
         mac_address_pool                = "DATA-A"
         name                            = "DATA-A"
+        placement_pci_link              = 0
+        placement_pci_order             = 6
+        placement_slot_id               = "MLOM"
+        placement_switch_id             = "A"
       },
       "DATA-B" = {
         cdn_source                      = "vnic"
@@ -100,6 +128,10 @@ lan_connectivity_policies = {
         mac_address_allocation_type     = "POOL"
         mac_address_pool                = "DATA-B"
         name                            = "DATA-B"
+        placement_pci_link              = 0
+        placement_pci_order             = 7
+        placement_slot_id               = "MLOM"
+        placement_switch_id             = "B"
       },
     }
   }

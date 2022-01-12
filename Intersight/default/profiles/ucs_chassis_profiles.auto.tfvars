@@ -14,7 +14,7 @@ ucs_chassis_profiles = {
     serial_number     = ""
     snmp_policy       = "default"
     thermal_policy    = "9508"
-    tags = []
+    tags              = []
   }
   "kzoucs1-2" = {
     action            = "No-op"
@@ -26,6 +26,6 @@ ucs_chassis_profiles = {
     serial_number     = ""
     snmp_policy       = "default"
     thermal_policy    = "9508"
-    tags = []
+    tags              = []
   }
 }

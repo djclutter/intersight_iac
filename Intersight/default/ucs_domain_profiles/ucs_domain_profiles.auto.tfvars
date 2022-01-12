@@ -24,6 +24,6 @@ ucs_domain_profiles = {
     vlan_policy_fabric_b        = "kzoucs1"
     vsan_policy_fabric_a        = "kzoucs1-A"
     vsan_policy_fabric_b        = "kzoucs1-B"
-    tags         = []
+    tags                        = []
   }
 }

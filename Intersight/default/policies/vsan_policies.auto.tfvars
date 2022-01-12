@@ -11,9 +11,9 @@ vsan_policies = {
     tags            = []
     vsans = {
       "1" = {
-        fcoe_vlan_id   = 100
-        name           = "kzoucs1-a"
-        vsan_id        = 100
+        fcoe_vlan_id = 100
+        name         = "kzoucs1-a"
+        vsan_id      = 100
       },
     }
   }
@@ -24,9 +24,9 @@ vsan_policies = {
     tags            = []
     vsans = {
       "1" = {
-        fcoe_vlan_id   = 200
-        name           = "kzoucs1-b"
-        vsan_id        = 200
+        fcoe_vlan_id = 200
+        name         = "kzoucs1-b"
+        vsan_id      = 200
       },
     }
   }

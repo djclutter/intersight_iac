@@ -11,8 +11,8 @@ ntp_policies = {
     timezone     = "America/New_York"
     ntp_servers = [
       "10.60.1.17",
-      "10.50.110.50",
+      "10.1.1.184",
     ]
-    tags         = []
+    tags = []
   }
 }

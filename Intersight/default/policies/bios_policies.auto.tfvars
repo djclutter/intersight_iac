@@ -8,7 +8,7 @@ bios_policies = {
     bios_template = "VMware_tpm"
     description   = "VMware BIOS Policy"
     organization  = "default"
-    tags = []
+    tags          = []
     # BIOS Customization Settings
   }
 }

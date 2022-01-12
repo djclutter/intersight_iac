@@ -20,6 +20,10 @@ san_connectivity_policies = {
         fibre_channel_qos_policy     = "FC_QoS"
         name                         = "HBA-A"
         persistent_lun_bindings      = false
+        placement_pci_link           = 0
+        placement_pci_order          = 8
+        placement_slot_id            = "MLOM"
+        placement_switch_id          = "A"
         wwpn_allocation_type         = "POOL"
         wwpn_pool                    = "VMware-A"
       },
@@ -29,6 +33,10 @@ san_connectivity_policies = {
         fibre_channel_qos_policy     = "FC_QoS"
         name                         = "HBA-B"
         persistent_lun_bindings      = false
+        placement_pci_link           = 0
+        placement_pci_order          = 9
+        placement_slot_id            = "MLOM"
+        placement_switch_id          = "B"
         wwpn_allocation_type         = "POOL"
         wwpn_pool                    = "VMware-B"
       },

@@ -16,11 +16,11 @@ local_user_policies = {
     password_history          = 5
     users = {
       "admin" = {
-        enabled = true
+        enabled  = true
         password = 1
         role     = "admin"
       },
     }
-    tags         = []
+    tags = []
   }
 }

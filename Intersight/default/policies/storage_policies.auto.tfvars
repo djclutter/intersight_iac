@@ -10,7 +10,7 @@ storage_policies = {
     organization             = "default"
     unused_disks_state       = "NoChange"
     use_jbod_for_vd_creation = true
-    drive_group = {}
+    drive_group              = {}
     m2_configuration = {
       "0" = {
         controller_slot = "MSTOR-RAID-1,MSTOR-RAID-2"
@@ -18,6 +18,6 @@ storage_policies = {
       }
     }
     single_drive_raid_configuration = {}
-    tags         = []
+    tags                            = []
   }
 }

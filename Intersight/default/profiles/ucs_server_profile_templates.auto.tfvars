@@ -12,11 +12,11 @@ ucs_server_profile_templates = {
     #
     # Compute Configuration
     #___________________________
-    bios_policy              = "VMware"
-    boot_order_policy        = "VMware_M2_pxe"
-    uuid_pool                = "VMware"
-    power_policy             = "Server"
-    virtual_media_policy     = ""
+    bios_policy          = "VMware"
+    boot_order_policy    = "VMware_M2_pxe"
+    uuid_pool            = "VMware"
+    power_policy         = "Server"
+    virtual_media_policy = ""
     #___________________________
     #
     # Management Configuration
@@ -39,8 +39,8 @@ ucs_server_profile_templates = {
     #
     # Network Configuration
     #___________________________
-    lan_connectivity_policy      = "VMware_LAN"
-    san_connectivity_policy      = "VMware_SAN"
-    tags = []
+    lan_connectivity_policy = "VMware_LAN"
+    san_connectivity_policy = "VMware_SAN"
+    tags                    = []
   }
 }

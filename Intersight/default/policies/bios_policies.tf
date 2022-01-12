@@ -3063,20 +3063,20 @@ resource "intersight_bios_policy" "bios_policies" {
   cpu_power_management = length(
     regexall("(DSS|Java|OLTP|Virtualization)", each.value.bios_template)
   ) > 0 ? "custom" : each.value.cpu_power_management                         # Power Technology
-  demand_scrub                      = each.value.demand_scrub                      # Demand Scrub
-  direct_cache_access               = each.value.direct_cache_access               # Direct Cache Access Support
-  dram_clock_throttling             = each.value.dram_clock_throttling             # DRAM Clock Throttling
-  energy_efficient_turbo            = each.value.energy_efficient_turbo            # Energy Efficient Turbo
-  eng_perf_tuning                   = each.value.eng_perf_tuning                   # Energy Performance Tuning
-  enhanced_intel_speed_step_tech    = each.value.enhanced_intel_speed_step_tech    # Enhanced Intel Speedstep(R) Technology
-  epp_enable                        = each.value.epp_enable                        # Processor EPP Enable
-  epp_profile                       = each.value.epp_profile                       # EPP Profile
-  execute_disable_bit               = each.value.execute_disable_bit               # Execute Disable Bit
-  extended_apic                     = each.value.extended_apic                     # Local X2 Apic
-  hardware_prefetch                 = each.value.hardware_prefetch                 # Hardware Prefetcher
-  hwpm_enable                       = each.value.hwpm_enable                       # CPU Hardware Power Management
-  imc_interleave                    = each.value.imc_interleave                    # IMC Interleaving
-  intel_dynamic_speed_select        = each.value.intel_dynamic_speed_select        # Intel Dynamic Speed Select
+  demand_scrub                   = each.value.demand_scrub                   # Demand Scrub
+  direct_cache_access            = each.value.direct_cache_access            # Direct Cache Access Support
+  dram_clock_throttling          = each.value.dram_clock_throttling          # DRAM Clock Throttling
+  energy_efficient_turbo         = each.value.energy_efficient_turbo         # Energy Efficient Turbo
+  eng_perf_tuning                = each.value.eng_perf_tuning                # Energy Performance Tuning
+  enhanced_intel_speed_step_tech = each.value.enhanced_intel_speed_step_tech # Enhanced Intel Speedstep(R) Technology
+  epp_enable                     = each.value.epp_enable                     # Processor EPP Enable
+  epp_profile                    = each.value.epp_profile                    # EPP Profile
+  execute_disable_bit            = each.value.execute_disable_bit            # Execute Disable Bit
+  extended_apic                  = each.value.extended_apic                  # Local X2 Apic
+  hardware_prefetch              = each.value.hardware_prefetch              # Hardware Prefetcher
+  hwpm_enable                    = each.value.hwpm_enable                    # CPU Hardware Power Management
+  imc_interleave                 = each.value.imc_interleave                 # IMC Interleaving
+  intel_dynamic_speed_select     = each.value.intel_dynamic_speed_select     # Intel Dynamic Speed Select
   intel_hyper_threading_tech = length(
     regexall("(HPC)", each.value.bios_template)
   ) > 0 ? "disabled" : each.value.intel_hyper_threading_tech # Intel HyperThreading Tech
@@ -3085,14 +3085,14 @@ resource "intersight_bios_policy" "bios_policies" {
   intel_virtualization_technology = length(                  # Intel(R) VT
     regexall("(HPC|Java)", each.value.bios_template)
   ) > 0 ? "disabled" : each.value.intel_virtualization_technology
-  ioh_error_enable                  = each.value.ioh_error_enable                  # IIO Error Enable
-  ip_prefetch                       = each.value.ip_prefetch                       # DCU IP Prefetcher
-  kti_prefetch                      = each.value.kti_prefetch                      # KTI Prefetch
-  llc_prefetch                      = each.value.llc_prefetch                      # LLC Prefetch
-  memory_inter_leave                = each.value.memory_inter_leave                # Intel Memory Interleaving
-  package_cstate_limit              = each.value.package_cstate_limit              # Package C State Limit
-  patrol_scrub                      = each.value.patrol_scrub                      # Patrol Scrub
-  patrol_scrub_duration             = each.value.patrol_scrub_duration             # Patrol Scrub Interval
+  ioh_error_enable      = each.value.ioh_error_enable      # IIO Error Enable
+  ip_prefetch           = each.value.ip_prefetch           # DCU IP Prefetcher
+  kti_prefetch          = each.value.kti_prefetch          # KTI Prefetch
+  llc_prefetch          = each.value.llc_prefetch          # LLC Prefetch
+  memory_inter_leave    = each.value.memory_inter_leave    # Intel Memory Interleaving
+  package_cstate_limit  = each.value.package_cstate_limit  # Package C State Limit
+  patrol_scrub          = each.value.patrol_scrub          # Patrol Scrub
+  patrol_scrub_duration = each.value.patrol_scrub_duration # Patrol Scrub Interval
   processor_c1e = length(                                  # Processor C1E
     regexall("(DSS|Java|OLTP|Virtualization)", each.value.bios_template)
   ) > 0 ? "disabled" : each.value.processor_c1e
@@ -3105,20 +3105,20 @@ resource "intersight_bios_policy" "bios_policies" {
   processor_cstate = length(
     regexall("(DSS|Java|OLTP|Virtualization)", each.value.bios_template)
   ) > 0 ? "disabled" : each.value.processor_cstate   # CPU C State
-  pstate_coord_type                 = each.value.pstate_coord_type                 # P-State Coordination
-  pwr_perf_tuning                   = each.value.pwr_perf_tuning                   # Power Performance Tuning
-  qpi_link_speed                    = each.value.qpi_link_speed                    # UPI Link Frequency Select
-  rank_inter_leave                  = each.value.rank_inter_leave                  # Rank Interleaving
-  single_pctl_enable                = each.value.single_pctl_enable                # Single PCTL
-  smt_mode                          = each.value.smt_mode                          # SMT Mode
-  snc                               = each.value.snc                               # Sub Numa Clustering
-  streamer_prefetch                 = each.value.streamer_prefetch                 # DCU Streamer Prefetch
-  svm_mode                          = each.value.svm_mode                          # SVM Mode
-  ufs_disable                       = each.value.ufs_disable                       # Uncore Frequency Scaling
+  pstate_coord_type  = each.value.pstate_coord_type  # P-State Coordination
+  pwr_perf_tuning    = each.value.pwr_perf_tuning    # Power Performance Tuning
+  qpi_link_speed     = each.value.qpi_link_speed     # UPI Link Frequency Select
+  rank_inter_leave   = each.value.rank_inter_leave   # Rank Interleaving
+  single_pctl_enable = each.value.single_pctl_enable # Single PCTL
+  smt_mode           = each.value.smt_mode           # SMT Mode
+  snc                = each.value.snc                # Sub Numa Clustering
+  streamer_prefetch  = each.value.streamer_prefetch  # DCU Streamer Prefetch
+  svm_mode           = each.value.svm_mode           # SVM Mode
+  ufs_disable        = each.value.ufs_disable        # Uncore Frequency Scaling
   work_load_config = length(                         # Workload Configuration
     regexall("(HPC)", each.value.bios_template)
   ) > 0 ? "Balanced" : each.value.work_load_config
-  xpt_prefetch                      = each.value.xpt_prefetch                      # XPT Prefetch
+  xpt_prefetch = each.value.xpt_prefetch # XPT Prefetch
 
 
   #+++++++++++++++++++++++++++++++

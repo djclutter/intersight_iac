@@ -8,7 +8,7 @@ syslog_policies = {
     description        = "default Syslog Policy"
     local_min_severity = "warning"
     organization       = "default"
-    remote_clients    = [
+    remote_clients = [
       {
         enabled      = false
         hostname     = "0.0.0.0"
@@ -24,6 +24,6 @@ syslog_policies = {
         protocol     = "udp"
       }
     ]
-    tags         = []
+    tags = []
   }
 }

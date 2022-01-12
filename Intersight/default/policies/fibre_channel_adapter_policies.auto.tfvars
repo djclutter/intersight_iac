@@ -8,6 +8,6 @@ fibre_channel_adapter_policies = {
     adapter_template = "VMware"
     description      = "VMware Fibre-Channel Adapter Policy"
     organization     = "default"
-    tags = []
+    tags             = []
   }
 }
