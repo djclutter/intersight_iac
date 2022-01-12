@@ -5,9 +5,9 @@
 
 ethernet_network_group_policies = {
   "kzoucs1-vg" = {
-    allowed_vlans = "708-710,714,715,852,899,904,909,1057"
+    allowed_vlans = "1,708-710,714,715,852,899,904,909,1057"
     description   = "kzoucs1 Ethernet Network Group Policy"
-    #native_vlan   = 1
+    native_vlan   = 1
     organization  = "default"
     tags          = []
   }
