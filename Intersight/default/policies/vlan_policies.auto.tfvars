@@ -18,7 +18,7 @@ vlan_policies = {
       },
       "2" = {
         auto_allow_on_uplinks = false
-        vlan_list             = "1,708-710,714-715,852,899,904,909,1057",
+        vlan_list             = "708-710,714-715,852,899,904,909,1057",
         multicast_policy      = "kzoucs1",
         name                  = "kzoucs1",
         native_vlan           = false
