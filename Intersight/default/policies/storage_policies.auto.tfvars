@@ -13,7 +13,7 @@ storage_policies = {
     drive_group              = {}
     m2_configuration = {
       "0" = {
-        controller_slot = "MSTOR-RAID-1,MSTOR-RAID-2"
+        controller_slot = "MSTOR-RAID-1"
         enable          = true
       }
     }
