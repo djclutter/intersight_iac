@@ -110,6 +110,8 @@ locals {
       boot_option_retry                     = v.boot_option_retry != null ? v.boot_option_retry : "platform-default"
       boot_performance_mode                 = v.boot_performance_mode != null ? v.boot_performance_mode : "platform-default"
       burst_and_postponed_refresh           = v.burst_and_postponed_refresh != null ? v.burst_and_postponed_refresh : "platform-default"
+      c1auto_demotion                       = v.c1auto_demotion != null ? v.c1auto_demotion : "platform-default"
+      c1auto_un_demotion                    = v.c1auto_un_demotion != null ? v.c1auto_un_demotion : "platform-default"
       cbs_cmn_apbdis                        = v.cbs_cmn_apbdis != null ? v.cbs_cmn_apbdis : "platform-default"
       cbs_cmn_cpu_cpb                       = v.cbs_cmn_cpu_cpb != null ? v.cbs_cmn_cpu_cpb : "platform-default"
       cbs_cmn_cpu_gen_downcore_ctrl         = v.cbs_cmn_cpu_gen_downcore_ctrl != null ? v.cbs_cmn_cpu_gen_downcore_ctrl : "platform-default"
@@ -153,6 +155,7 @@ locals {
       core_multi_processing                 = v.core_multi_processing != null ? v.core_multi_processing : "platform-default"
       cpu_energy_performance                = v.cpu_energy_performance != null ? v.cpu_energy_performance : "platform-default"
       cpu_frequency_floor                   = v.cpu_frequency_floor != null ? v.cpu_frequency_floor : "platform-default"
+      cpu_perf_enhancement                  = v.cpu_perf_enhancement != null ? v.cpu_perf_enhancement : "platform-default"
       cpu_performance                       = v.cpu_performance != null ? v.cpu_performance : "platform-default"
       cpu_power_management                  = v.cpu_power_management != null ? v.cpu_power_management : "platform-default"
       cr_qos                                = v.cr_qos != null ? v.cr_qos : "platform-default"
@@ -203,6 +206,7 @@ locals {
       kti_prefetch                          = v.kti_prefetch != null ? v.kti_prefetch : "platform-default"
       legacy_os_redirection                 = v.legacy_os_redirection != null ? v.legacy_os_redirection : "platform-default"
       legacy_usb_support                    = v.legacy_usb_support != null ? v.legacy_usb_support : "platform-default"
+      llc_alloc                             = v.llc_alloc != null ? v.llc_alloc : "platform-default"
       llc_prefetch                          = v.llc_prefetch != null ? v.llc_prefetch : "platform-default"
       lom_port0state                        = v.lom_port0state != null ? v.lom_port0state : "platform-default"
       lom_port1state                        = v.lom_port1state != null ? v.lom_port1state : "platform-default"
@@ -268,6 +272,7 @@ locals {
       pcie_slot_nvme5option_rom             = v.pcie_slot_nvme5option_rom != null ? v.pcie_slot_nvme5option_rom : "platform-default"
       pcie_slot_nvme6link_speed             = v.pcie_slot_nvme6link_speed != null ? v.pcie_slot_nvme6link_speed : "platform-default"
       pcie_slot_nvme6option_rom             = v.pcie_slot_nvme6option_rom != null ? v.pcie_slot_nvme6option_rom : "platform-default"
+      pcie_slots_cdn_enable                 = v.pcie_slots_cdn_enable != null ? v.pcie_slots_cdn_enable : "platform-default"
       pop_support                           = v.pop_support != null ? v.pop_support : "platform-default"
       post_error_pause                      = v.post_error_pause != null ? v.post_error_pause : "platform-default"
       post_package_repair                   = v.post_package_repair != null ? v.post_package_repair : "platform-default"
@@ -300,6 +305,8 @@ locals {
       sgx_le_wr                             = v.sgx_le_wr != null ? v.sgx_le_wr : "platform-default"
       sgx_package_info_in_band_access       = v.sgx_package_info_in_band_access != null ? v.sgx_package_info_in_band_access : "platform-default"
       sgx_qos                               = v.sgx_qos != null ? v.sgx_qos : "platform-default"
+      sha1pcr_bank                          = v.sha1pcr_bank != null ? v.sha1pcr_bank : "platform-default"
+      sha256pcr_bank                        = v.sha256pcr_bank != null ? v.sha256pcr_bank : "platform-default"
       single_pctl_enable                    = v.single_pctl_enable != null ? v.single_pctl_enable : "platform-default"
       slot10link_speed                      = v.slot10link_speed != null ? v.slot10link_speed : "platform-default"
       slot10state                           = v.slot10state != null ? v.slot10state : "platform-default"
@@ -451,6 +458,8 @@ locals {
       ucsm_boot_order_rule                  = v.ucsm_boot_order_rule != null ? v.ucsm_boot_order_rule : "platform-default"
       ufs_disable                           = v.ufs_disable != null ? v.ufs_disable : "platform-default"
       uma_based_clustering                  = v.uma_based_clustering != null ? v.uma_based_clustering : "platform-default"
+      upi_link_enablement                   = v.upi_link_enablement != null ? v.upi_link_enablement : "platform-default"
+      upi_power_management                  = v.upi_power_management != null ? v.upi_power_management : "platform-default"
       usb_emul6064                          = v.usb_emul6064 != null ? v.usb_emul6064 : "platform-default"
       usb_port_front                        = v.usb_port_front != null ? v.usb_port_front : "platform-default"
       usb_port_internal                     = v.usb_port_internal != null ? v.usb_port_internal : "platform-default"
@@ -460,10 +469,12 @@ locals {
       usb_port_vmedia                       = v.usb_port_vmedia != null ? v.usb_port_vmedia : "platform-default"
       usb_xhci_support                      = v.usb_xhci_support != null ? v.usb_xhci_support : "platform-default"
       vga_priority                          = v.vga_priority != null ? v.vga_priority : "platform-default"
+      virtual_numa                          = v.virtual_numa != null ? v.virtual_numa : "platform-default"
       vmd_enable                            = v.vmd_enable != null ? v.vmd_enable : "platform-default"
       vol_memory_mode                       = v.vol_memory_mode != null ? v.vol_memory_mode : "platform-default"
       work_load_config                      = v.work_load_config != null ? v.work_load_config : "platform-default"
       xpt_prefetch                          = v.xpt_prefetch != null ? v.xpt_prefetch : "platform-default"
+      xpt_remote_prefetch                   = v.xpt_remote_prefetch != null ? v.xpt_remote_prefetch : "platform-default"
     }
   }
 
@@ -554,9 +565,9 @@ locals {
               ) > 0 && value.InterfaceName != "" ? value.InterfaceSource : length(
               regexall("mac", value.InterfaceSource)
             ) > 0 && value.MacAddress != "" ? value.InterfaceSource : "port",
-            IpType     = value.IpType != "" ? value.IpType : "None",
-            MacAddress = value.MacAddress,
-            Port       = value.Port,
+            IpType     = value.IpType != null && value.IpType != "" ? value.IpType : "IPv4",
+            MacAddress = value.MacAddress != null ? value.MacAddress : "",
+            Port       = value.Port != null ? value.Port : -1,
             Slot       = value.Slot != "" ? value.Slot : "MLOM"
           }
           ) : v.boot_mode == "Uefi" && value.object_type == "boot.San" ? jsonencode(
@@ -622,15 +633,15 @@ locals {
   }
 
   formatted_boot_order_policies = {
-    for k, v in local.boot_order_policies : k => {
+    for key, value in local.boot_order_policies : key => {
       boot_devices = {
-        for key, value in local.boot_devices_loop_2 : value.name => value if value.boot_order_policy == k
+        for k, v in local.boot_devices_loop_2 : v.name => v if v.boot_order_policy == key
       }
-      boot_mode          = v.boot_mode
-      description        = v.description
-      enable_secure_boot = v.enable_secure_boot
-      organization       = v.organization
-      tags               = v.tags
+      boot_mode          = value.boot_mode
+      description        = value.description
+      enable_secure_boot = value.enable_secure_boot
+      organization       = value.organization
+      tags               = value.tags
     }
   }
 
@@ -699,8 +710,8 @@ locals {
         regexall("(SRIOV)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for Win8 SRIOV-VMFEX PF." : length(
         regexall("(usNICOracleRAC)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for usNIC Oracle RAC Connection." : length(
         regexall("(usNIC)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for usNIC Connection." : length(
-        regexall("(VMwarePassThru)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for VMWare pass-thru." : length(
-        regexall("(VMware)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for VMWare." : length(
+        regexall("(VMwarePassThru)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for VMware pass-thru." : length(
+        regexall("(VMware)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for VMware." : length(
         regexall("(Win-AzureStack)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for Azure Stack." : length(
         regexall("(Win-HPN-SMBd)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for Windows high performance and networking with RoCE V2." : length(
         regexall("(Win-HPN)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for Windows high performance and networking." : length(
@@ -914,7 +925,7 @@ locals {
         regexall("(Initiator)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for Initiator." : length(
         regexall("(Linux)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for linux." : length(
         regexall("(Solaris)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for Solaris." : length(
-        regexall("(VMware)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for VMWare." : length(
+        regexall("(VMware)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for VMware." : length(
         regexall("(WindowsBoot)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? "Recommended adapter settings for WindowsBoot." : length(
         regexall("(Windows)", coalesce(v.adapter_template, "EMPTY"))
       ) > 0 ? "Recommended adapter settings for Windows." : v.description != null ? v.description : ""
@@ -1009,10 +1020,11 @@ locals {
     for k, v in var.imc_access_policies : k => {
       description                = v.description != null ? v.description : ""
       inband_ip_pool             = v.inband_ip_pool != null ? v.inband_ip_pool : ""
-      inband_vlan_id             = v.inband_vlan_id != null ? v.inband_vlan_id : 1
+      inband_vlan_id             = v.inband_vlan_id != null ? v.inband_vlan_id : 4
       ipv4_address_configuration = v.ipv4_address_configuration != null ? v.ipv4_address_configuration : true
       ipv6_address_configuration = v.ipv6_address_configuration != null ? v.ipv6_address_configuration : false
       organization               = v.organization != null ? v.organization : "default"
+      out_of_band_ip_pool        = v.out_of_band_ip_pool != null ? v.out_of_band_ip_pool : ""
       tags                       = v.tags != null ? v.tags : []
     }
   }
@@ -1469,7 +1481,14 @@ locals {
   # Port Policy > Port Roles > Appliance Section - Locals
   #__________________________________________________________
 
-  port_role_appliances_loop = flatten([
+  /*
+  Loop 1 is to determine if the port_list is:
+  * A Single number 1
+  * A Range of numbers 1-5
+  * A List of numbers 1-5,10-15
+  And then to return these values as a list
+  */
+  port_role_appliances_loop_1 = flatten([
     for key, value in local.port_policies : [
       for k, v in value.port_role_appliances : {
         admin_speed                     = v.admin_speed != null ? v.admin_speed : "Auto"
@@ -1480,16 +1499,64 @@ locals {
         key                             = k
         mode                            = v.mode != null ? v.mode : "trunk"
         port_list                       = v.port_list
-        port_policy                     = key
-        priority                        = v.priority != null ? v.priority : "Best Effort"
-        slot_id                         = v.slot_id != null ? v.slot_id : 1
-        tags                            = value.tags != null ? value.tags : []
+        port_split = length(regexall("-", v.port_list)) > 0 ? tolist(
+          split(",", v.port_list)) : length(regexall(",", v.port_list)) > 0 ? tolist(
+          split(",", v.port_list)
+        ) : [v.port_list]
+        port_policy = key
+        priority    = v.priority != null ? v.priority : "Best Effort"
+        slot_id     = v.slot_id != null ? v.slot_id : 1
+        tags        = value.tags != null ? value.tags : []
       }
     ]
   ])
 
+  # Loop 2 takes a list that contains a "-" or a "," and expands those values
+  # into a full list.  So [1-5] becomes [1, 2, 3, 4, 5]
+  port_role_appliances_loop_2 = flatten([
+    for k, v in local.port_role_appliances_loop_1 : {
+      admin_speed                     = v.admin_speed
+      breakout_port_id                = v.breakout_port_id
+      ethernet_network_control_policy = v.ethernet_network_control_policy
+      ethernet_network_group_policy   = v.ethernet_network_group_policy
+      fec                             = v.fec
+      key                             = v.key
+      mode                            = v.mode
+      port_list = length(regexall("(,|-)", jsonencode(v.port_list))) > 0 ? flatten(
+        [for s in v.port_split : length(regexall("-", s)) > 0 ? [
+          for a in range(tonumber(element(split("-", s), 0)), (tonumber(element(split("-", s), 1)) + 1)
+      ) : tonumber(a)] : [s]]) : v.port_split
+      port_policy = v.port_policy
+      priority    = v.priority
+      slot_id     = v.slot_id
+      tags        = v.tags
+    }
+  ])
+
+  # Loop 3 will take the vlan_list created in Loop 2 and expand this
+  # out to a map of objects per vlan.
+  port_role_appliances_loop_3 = flatten([
+    for k, v in local.port_role_appliances_loop_2 : [
+      for s in v.port_list : {
+        admin_speed                     = v.admin_speed
+        breakout_port_id                = v.breakout_port_id
+        ethernet_network_control_policy = v.ethernet_network_control_policy
+        ethernet_network_group_policy   = v.ethernet_network_group_policy
+        fec                             = v.fec
+        key                             = v.key
+        mode                            = v.mode
+        port_id                         = s
+        port_policy                     = v.port_policy
+        priority                        = v.priority
+        slot_id                         = v.slot_id
+        tags                            = v.tags
+      }
+    ]
+  ])
+
+  # And lastly loop3's list is converted back to a map of objects
   port_role_appliances = {
-    for k, v in local.port_role_appliances_loop : "${v.port_policy}_${v.key}" => v
+    for k, v in local.port_role_appliances_loop_3 : "${v.port_policy}_${v.key}_${v.port_id}" => v
   }
 
 
@@ -1498,26 +1565,78 @@ locals {
   # Port Policy > Port Roles > Ethernet Uplinks Section - Locals
   #_________________________________________________________________
 
-  port_role_ethernet_uplinks_loop = flatten([
+  /*
+  Loop 1 is to determine if the port_list is:
+  * A Single number 1
+  * A Range of numbers 1-5
+  * A List of numbers 1-5,10-15
+  And then to return these values as a list
+  */
+  port_role_ethernet_uplinks_loop_1 = flatten([
     for key, value in local.port_policies : [
       for k, v in value.port_role_ethernet_uplinks : {
-        admin_speed                     = v.admin_speed != null ? v.admin_speed : "Auto"
-        breakout_port_id                = v.breakout_port_id != null ? v.breakout_port_id : 0
-        ethernet_network_control_policy = v.ethernet_network_control_policy
-        fec                             = v.fec != null ? v.fec : "Auto"
-        flow_control_policy             = v.flow_control_policy != null ? v.flow_control_policy : ""
-        key                             = k
-        link_control_policy             = v.link_control_policy != null ? v.link_control_policy : ""
-        port_list                       = v.port_list
-        port_policy                     = key
-        slot_id                         = v.slot_id != null ? v.slot_id : 1
-        tags                            = value.tags != null ? value.tags : []
+        admin_speed                   = v.admin_speed != null ? v.admin_speed : "Auto"
+        breakout_port_id              = v.breakout_port_id != null ? v.breakout_port_id : 0
+        ethernet_network_group_policy = v.ethernet_network_group_policy != null ? v.ethernet_network_group_policy : ""
+        fec                           = v.fec != null ? v.fec : "Auto"
+        flow_control_policy           = v.flow_control_policy != null ? v.flow_control_policy : ""
+        key                           = k
+        link_control_policy           = v.link_control_policy != null ? v.link_control_policy : ""
+        port_list                     = v.port_list
+        port_split = length(regexall("-", v.port_list)) > 0 ? tolist(
+          split(",", v.port_list)) : length(regexall(",", v.port_list)) > 0 ? tolist(
+          split(",", v.port_list)
+        ) : [v.port_list]
+        port_policy = key
+        slot_id     = v.slot_id != null ? v.slot_id : 1
+        tags        = value.tags != null ? value.tags : []
+      }
+    ]
+  ])
+
+  # Loop 2 takes a list that contains a "-" or a "," and expands those values
+  # into a full list.  So [1-5] becomes [1, 2, 3, 4, 5]
+  port_role_ethernet_uplinks_loop_2 = flatten([
+    for k, v in local.port_role_ethernet_uplinks_loop_1 : {
+      admin_speed                   = v.admin_speed
+      breakout_port_id              = v.breakout_port_id
+      ethernet_network_group_policy = v.ethernet_network_group_policy
+      fec                           = v.fec
+      flow_control_policy           = v.flow_control_policy
+      key                           = v.key
+      link_control_policy           = v.link_control_policy
+      port_list = length(regexall("(,|-)", jsonencode(v.port_list))) > 0 ? flatten(
+        [for s in v.port_split : length(regexall("-", s)) > 0 ? [
+          for a in range(tonumber(element(split("-", s), 0)), (tonumber(element(split("-", s), 1)) + 1)
+      ) : tonumber(a)] : [s]]) : v.port_split
+      port_policy = v.port_policy
+      slot_id     = v.slot_id
+      tags        = v.tags
+    }
+  ])
+
+  # Loop 3 will take the vlan_list created in Loop 2 and expand this
+  # out to a map of objects per vlan.
+  port_role_ethernet_uplinks_loop_3 = flatten([
+    for k, v in local.port_role_ethernet_uplinks_loop_2 : [
+      for s in v.port_list : {
+        admin_speed                   = v.admin_speed
+        breakout_port_id              = v.breakout_port_id
+        ethernet_network_group_policy = v.ethernet_network_group_policy
+        fec                           = v.fec
+        flow_control_policy           = v.flow_control_policy
+        key                           = v.key
+        link_control_policy           = v.link_control_policy
+        port_id                       = s
+        port_policy                   = v.port_policy
+        slot_id                       = v.slot_id
+        tags                          = v.tags
       }
     ]
   ])
 
   port_role_ethernet_uplinks = {
-    for k, v in local.port_role_ethernet_uplinks_loop : "${v.port_policy}_${v.key}" => v
+    for k, v in local.port_role_ethernet_uplinks_loop_3 : "${v.port_policy}_${v.key}_${v.port_id}" => v
   }
 
 
@@ -1526,23 +1645,69 @@ locals {
   # Port Policy > Port Roles > Fibre-Channel Storage Section - Locals
   #______________________________________________________________________
 
-  port_role_fc_storage_loop = flatten([
+  /*
+  Loop 1 is to determine if the port_list is:
+  * A Single number 1
+  * A Range of numbers 1-5
+  * A List of numbers 1-5,10-15
+  And then to return these values as a list
+  */
+  port_role_fc_storage_loop_1 = flatten([
     for key, value in local.port_policies : [
       for k, v in value.port_role_fc_storage : {
         admin_speed      = v.admin_speed != null ? v.admin_speed : "16Gbps"
         breakout_port_id = v.breakout_port_id != null ? v.breakout_port_id : 0
         key              = k
         port_list        = v.port_list
-        port_policy      = key
-        slot_id          = v.slot_id != null ? v.slot_id : 1
-        tags             = value.tags != null ? value.tags : []
+        port_split = length(regexall("-", v.port_list)) > 0 ? tolist(
+          split(",", v.port_list)) : length(regexall(",", v.port_list)) > 0 ? tolist(
+          split(",", v.port_list)
+        ) : [v.port_list]
+        port_policy = key
+        slot_id     = v.slot_id != null ? v.slot_id : 1
+        tags        = value.tags != null ? value.tags : []
+        vsan_id     = v.vsan_id
+      }
+    ]
+  ])
+
+  # Loop 2 takes a list that contains a "-" or a "," and expands those values
+  # into a full list.  So [1-5] becomes [1, 2, 3, 4, 5]
+  port_role_fc_storage_loop_2 = flatten([
+    for k, v in local.port_role_fc_storage_loop_1 : {
+      admin_speed      = v.admin_speed
+      breakout_port_id = v.breakout_port_id
+      key              = v.key
+      port_list = length(regexall("(,|-)", jsonencode(v.port_list))) > 0 ? flatten(
+        [for s in v.port_split : length(regexall("-", s)) > 0 ? [
+          for a in range(tonumber(element(split("-", s), 0)), (tonumber(element(split("-", s), 1)) + 1)
+      ) : tonumber(a)] : [s]]) : v.port_split
+      port_policy = v.port_policy
+      slot_id     = v.slot_id
+      tags        = v.tags
+      vsan_id     = v.vsan_id
+    }
+  ])
+
+  # Loop 3 will take the vlan_list created in Loop 2 and expand this
+  # out to a map of objects per vlan.
+  port_role_fc_storage_loop_3 = flatten([
+    for k, v in local.port_role_fc_storage_loop_2 : [
+      for s in v.port_list : {
+        admin_speed      = v.admin_speed
+        breakout_port_id = v.breakout_port_id
+        key              = v.key
+        port_id          = s
+        port_policy      = v.port_policy
+        slot_id          = v.slot_id
+        tags             = v.tags
         vsan_id          = v.vsan_id
       }
     ]
   ])
 
   port_role_fc_storage = {
-    for k, v in local.port_role_fc_storage_loop : "${v.port_policy}_${v.key}" => v
+    for k, v in local.port_role_fc_storage_loop_3 : "${v.port_policy}_${v.key}_${v.port_id}" => v
   }
 
 
@@ -1551,7 +1716,14 @@ locals {
   # Port Policy > Port Roles > Fibre-Channel Uplinks Section - Locals
   #______________________________________________________________________
 
-  port_role_fc_uplinks_loop = flatten([
+  /*
+  Loop 1 is to determine if the port_list is:
+  * A Single number 1
+  * A Range of numbers 1-5
+  * A List of numbers 1-5,10-15
+  And then to return these values as a list
+  */
+  port_role_fc_uplinks_loop_1 = flatten([
     for key, value in local.port_policies : [
       for k, v in value.port_role_fc_uplinks : {
         admin_speed      = v.admin_speed != null ? v.admin_speed : "16Gbps"
@@ -1559,16 +1731,57 @@ locals {
         fill_pattern     = v.fill_pattern != null ? v.fill_pattern : "Arbff"
         key              = k
         port_list        = v.port_list
-        port_policy      = key
-        slot_id          = v.slot_id != null ? v.slot_id : 1
-        tags             = value.tags != null ? value.tags : []
+        port_split = length(regexall("-", v.port_list)) > 0 ? tolist(
+          split(",", v.port_list)) : length(regexall(",", v.port_list)) > 0 ? tolist(
+          split(",", v.port_list)
+        ) : [v.port_list]
+        port_policy = key
+        slot_id     = v.slot_id != null ? v.slot_id : 1
+        tags        = value.tags != null ? value.tags : []
+        vsan_id     = v.vsan_id
+      }
+    ]
+  ])
+
+  # Loop 2 takes a list that contains a "-" or a "," and expands those values
+  # into a full list.  So [1-5] becomes [1, 2, 3, 4, 5]
+  port_role_fc_uplinks_loop_2 = flatten([
+    for k, v in local.port_role_fc_uplinks_loop_1 : {
+      admin_speed      = v.admin_speed
+      breakout_port_id = v.breakout_port_id
+      fill_pattern     = v.fill_pattern
+      key              = v.key
+      port_list = length(regexall("(,|-)", jsonencode(v.port_list))) > 0 ? flatten(
+        [for s in v.port_split : length(regexall("-", s)) > 0 ? [
+          for a in range(tonumber(element(split("-", s), 0)), (tonumber(element(split("-", s), 1)) + 1)
+      ) : tonumber(a)] : [s]]) : v.port_split
+      port_policy = v.port_policy
+      slot_id     = v.slot_id
+      tags        = v.tags
+      vsan_id     = v.vsan_id
+    }
+  ])
+
+  # Loop 3 will take the vlan_list created in Loop 2 and expand this
+  # out to a map of objects per vlan.
+  port_role_fc_uplinks_loop_3 = flatten([
+    for k, v in local.port_role_fc_uplinks_loop_2 : [
+      for s in v.port_list : {
+        admin_speed      = v.admin_speed
+        breakout_port_id = v.breakout_port_id
+        fill_pattern     = v.fill_pattern
+        key              = v.key
+        port_id          = s
+        port_policy      = v.port_policy
+        slot_id          = v.slot_id
+        tags             = v.tags
         vsan_id          = v.vsan_id
       }
     ]
   ])
 
   port_role_fc_uplinks = {
-    for k, v in local.port_role_fc_uplinks_loop : "${v.port_policy}_${v.key}" => v
+    for k, v in local.port_role_fc_uplinks_loop_3 : "${v.port_policy}_${v.key}_${v.port_id}" => v
   }
 
 
@@ -1577,7 +1790,14 @@ locals {
   # Port Policy > Port Roles > FCoE Uplinks Section - Locals
   #_________________________________________________________________
 
-  port_role_fcoe_uplinks_loop = flatten([
+  /*
+  Loop 1 is to determine if the port_list is:
+  * A Single number 1
+  * A Range of numbers 1-5
+  * A List of numbers 1-5,10-15
+  And then to return these values as a list
+  */
+  port_role_fcoe_uplinks_loop_1 = flatten([
     for key, value in local.port_policies : [
       for k, v in value.port_role_fcoe_uplinks : {
         admin_speed         = v.admin_speed != null ? v.admin_speed : "Auto"
@@ -1586,15 +1806,58 @@ locals {
         key                 = k
         link_control_policy = v.link_control_policy != null ? v.link_control_policy : ""
         port_list           = v.port_list
-        port_policy         = key
-        slot_id             = v.slot_id != null ? v.slot_id : 1
-        tags                = value.tags != null ? value.tags : []
+        port_split = length(regexall("-", v.port_list)) > 0 ? tolist(
+          split(",", v.port_list)) : length(regexall(",", v.port_list)) > 0 ? tolist(
+          split(",", v.port_list)
+        ) : [v.port_list]
+        port_policy = key
+        slot_id     = v.slot_id != null ? v.slot_id : 1
+        tags        = value.tags != null ? value.tags : []
+      }
+    ]
+  ])
+
+  # Loop 2 takes a list that contains a "-" or a "," and expands those values
+  # into a full list.  So [1-5] becomes [1, 2, 3, 4, 5]
+  port_role_fcoe_uplinks_loop_2 = flatten([
+    for k, v in local.port_role_fcoe_uplinks_loop_1 : {
+      admin_speed         = v.admin_speed
+      breakout_port_id    = v.breakout_port_id
+      fec                 = v.fec
+      key                 = v.key
+      link_control_policy = v.link_control_policy
+      port_list = length(regexall("(,|-)", jsonencode(v.port_list))) > 0 ? flatten(
+        [for s in v.port_split : length(regexall("-", s)) > 0 ? [
+          for a in range(tonumber(element(split("-", s), 0)), (tonumber(element(split("-", s), 1)) + 1)
+      ) : tonumber(a)] : [s]]) : v.port_split
+      port_policy = v.port_policy
+      slot_id     = v.slot_id
+      tags        = v.tags
+    }
+  ])
+
+  # Loop 3 will take the vlan_list created in Loop 2 and expand this
+  # out to a map of objects per vlan.
+  port_role_fcoe_uplinks_loop_3 = flatten([
+    for k, v in local.port_role_fcoe_uplinks_loop_2 : [
+      for s in v.port_list : {
+        admin_speed                     = v.admin_speed
+        breakout_port_id                = v.breakout_port_id
+        ethernet_network_control_policy = v.ethernet_network_control_policy
+        ethernet_network_group_policy   = v.ethernet_network_group_policy
+        fec                             = v.fec
+        key                             = v.key
+        link_control_policy             = v.link_control_policy
+        port_id                         = s
+        port_policy                     = v.port_policy
+        slot_id                         = v.slot_id
+        tags                            = v.tags
       }
     ]
   ])
 
   port_role_fcoe_uplinks = {
-    for k, v in local.port_role_fcoe_uplinks_loop : "${v.port_policy}_${v.key}" => v
+    for k, v in local.port_role_fcoe_uplinks_loop_3 : "${v.port_policy}_${v.key}_${v.port_id}" => v
   }
 
 
@@ -1603,21 +1866,64 @@ locals {
   # Port Policy > Port Roles > FCoE Uplinks Section - Locals
   #_________________________________________________________________
 
-  port_role_servers_loop = flatten([
+  /*
+  Loop 1 is to determine if the port_list is:
+  * A Single number 1
+  * A Range of numbers 1-5
+  * A List of numbers 1-5,10-15
+  And then to return these values as a list
+  */
+  port_role_servers_loop_1 = flatten([
     for key, value in local.port_policies : [
       for k, v in value.port_role_servers : {
         breakout_port_id = v.breakout_port_id != null ? v.breakout_port_id : 0
         key              = k
         port_list        = v.port_list
-        port_policy      = key
-        slot_id          = v.slot_id != null ? v.slot_id : 1
-        tags             = value.tags != null ? value.tags : []
+        port_split = length(regexall("-", v.port_list)) > 0 ? tolist(
+          split(",", v.port_list)) : length(regexall(",", v.port_list)) > 0 ? tolist(
+          split(",", v.port_list)
+        ) : [v.port_list]
+        port_policy = key
+        slot_id     = v.slot_id != null ? v.slot_id : 1
+        tags        = value.tags != null ? value.tags : []
       }
     ]
   ])
 
+  # Loop 2 takes a list that contains a "-" or a "," and expands those values
+  # into a full list.  So [1-5] becomes [1, 2, 3, 4, 5]
+  port_role_servers_loop_2 = flatten([
+    for k, v in local.port_role_servers_loop_1 : {
+      breakout_port_id = v.breakout_port_id
+      key              = v.key
+      port_list = length(regexall("(,|-)", jsonencode(v.port_list))) > 0 ? flatten(
+        [for s in v.port_split : length(regexall("-", s)) > 0 ? [
+          for a in range(tonumber(element(split("-", s), 0)), (tonumber(element(split("-", s), 1)) + 1)
+      ) : tonumber(a)] : [s]]) : v.port_split
+      port_policy = v.port_policy
+      slot_id     = v.slot_id
+      tags        = v.tags
+    }
+  ])
+
+  # Loop 3 will take the vlan_list created in Loop 2 and expand this
+  # out to a map of objects per vlan.
+  port_role_servers_loop_3 = flatten([
+    for k, v in local.port_role_servers_loop_2 : [
+      for s in v.port_list : {
+        breakout_port_id = v.breakout_port_id
+        key              = v.key
+        port_id          = s
+        port_policy      = v.port_policy
+        slot_id          = v.slot_id
+        tags             = v.tags
+      }
+    ]
+  ])
+
+  # And lastly loop3's list is converted back to a map of objects
   port_role_servers = {
-    for k, v in local.port_role_servers_loop : "${v.port_policy}_${v.key}" => v
+    for k, v in local.port_role_servers_loop_3 : "${v.port_policy}_${v.key}_${v.port_id}" => v
   }
 
 
@@ -1628,13 +1934,16 @@ locals {
 
   power_policies = {
     for k, v in var.power_policies : k => {
-      allocated_budget    = v.allocated_budget != null ? v.allocated_budget : 0
-      description         = v.description != null ? v.description : ""
-      organization        = v.organization != null ? v.organization : "default"
-      power_profiling     = v.power_profiling != null ? v.power_profiling : "Enabled"
-      power_restore_state = v.power_restore_state != null ? v.power_restore_state : "LastState"
-      tags                = v.tags != null ? v.tags : []
-      redundancy_mode     = v.redundancy_mode != null ? v.redundancy_mode : "Grid"
+      description               = v.description != null ? v.description : ""
+      dynamic_power_rebalancing = v.dynamic_power_rebalancing != null ? v.dynamic_power_rebalancing : "Enabled"
+      organization              = v.organization != null ? v.organization : "default"
+      power_allocation          = v.power_allocation != null ? v.power_allocation : 0
+      power_priority            = v.power_priority != null ? v.power_priority : "Low"
+      power_profiling           = v.power_profiling != null ? v.power_profiling : "Enabled"
+      power_redunancy           = v.power_redunancy != null ? v.power_redunancy : "Grid"
+      power_restore             = v.power_restore != null ? v.power_restore : "AlwaysOff"
+      power_save_mode           = v.power_save_mode != null ? v.power_save_mode : "Enabled"
+      tags                      = v.tags != null ? v.tags : []
     }
   }
 
@@ -1788,109 +2097,79 @@ locals {
 
   storage_policies = {
     for k, v in var.storage_policies : k => {
-      description                     = v.description != null ? v.description : ""
-      drive_group                     = v.drive_group != null ? v.drive_group : {}
-      global_hot_spares               = v.global_hot_spares != null ? v.global_hot_spares : ""
-      organization                    = v.organization != null ? v.organization : "default"
-      m2_configuration                = v.m2_configuration != null ? v.m2_configuration : {}
-      single_drive_raid_configuration = v.single_drive_raid_configuration != null ? v.single_drive_raid_configuration : {}
-      tags                            = v.tags != null ? v.tags : []
-      unused_disks_state              = v.unused_disks_state != null ? v.unused_disks_state : "NoChange"
-      use_jbod_for_vd_creation        = v.use_jbod_for_vd_creation != null ? v.use_jbod_for_vd_creation : false
+      description       = v.description != null ? v.description : ""
+      drive_group       = v.drive_group != null ? v.drive_group : {}
+      global_hot_spares = v.global_hot_spares != null ? v.global_hot_spares : ""
+      organization      = v.organization != null ? v.organization : "default"
+      m2_configuration  = v.m2_configuration != null ? v.m2_configuration : {}
+      single_drive_raid_configuration = v.single_drive_raid_configuration != null ? {
+        for key, value in v.single_drive_raid_configuration : key => {
+          access_policy = value.access_policy != null ? value.access_policy : "Default"
+          drive_cache   = value.drive_cache != null ? value.drive_cache : "Default"
+          drive_slots   = value.drive_slots
+          enable        = value.enable != null ? value.enable : true
+          read_policy   = value.read_policy != null ? value.read_policy : "Default"
+          strip_size    = value.strip_size != null ? value.strip_size : 64
+          write_policy  = value.write_policy != null ? value.write_policy : "Default"
+        }
+      } : {}
+      tags                     = v.tags != null ? v.tags : []
+      unused_disks_state       = v.unused_disks_state != null ? v.unused_disks_state : "NoChange"
+      use_jbod_for_vd_creation = v.use_jbod_for_vd_creation != null ? v.use_jbod_for_vd_creation : false
     }
   }
 
-  drive_group_loop = flatten([
+  drive_groups_loop = flatten([
     for key, value in local.storage_policies : [
       for k, v in value.drive_group : {
-        automatic_drive_group = v.automatic_drive_group != null ? v.automatic_drive_group : {}
-        organization          = value.organization != null ? value.organization : "default"
-        manual_drive_group    = v.manual_drive_group != null ? v.manual_drive_group : {}
-        storage_policy        = key
-        key                   = k
-        raid_level            = v.raid_level != null ? v.raid_level : null
-        tags                  = value.tags != null ? value.tags : []
-        virtual_drives        = v.virtual_drives != null ? v.virtual_drives : {}
+        automatic_drive_group = v.automatic_drive_group != null ? {
+          for x, y in v.automatic_drive_group : x => {
+            drives_per_span          = y.drives_per_span != null ? y.drives_per_span : 2
+            drive_type               = y.drive_type != null ? y.drive_type : "SSD"
+            minimum_drive_size       = y.minimum_drive_size != null ? y.minimum_drive_size : 100
+            num_dedicated_hot_spares = y.num_dedicated_hot_spares != null ? y.num_dedicated_hot_spares : ""
+            number_of_spans          = y.number_of_spans != null ? y.number_of_spans : 1
+            use_remaining_drives     = y.use_remaining_drives != null ? y.use_remaining_drives : false
+
+          }
+        } : {}
+        organization = value.organization != null ? value.organization : "default"
+        manual_drive_group = v.manual_drive_group != null ? {
+          for x, y in v.manual_drive_group : x => {
+            dedicated_hot_spares = y.dedicated_hot_spares != null ? y.dedicated_hot_spares : ""
+            drive_array_spans = y.drive_array_spans != null ? [
+              for a, b in y.drive_array_spans : {
+                additional_properties = ""
+                class_id              = "storage.SpanDrives"
+                object_type           = "storage.SpanDrives"
+                slots                 = b.slots
+              }
+            ] : []
+          }
+        } : {}
+        storage_policy = key
+        key            = k
+        raid_level     = v.raid_level != null ? v.raid_level : null
+        tags           = value.tags != null ? value.tags : []
+        virtual_drives = v.virtual_drives != null ? {
+          for a, b in v.virtual_drives : a => {
+            access_policy       = b.access_policy != null ? b.access_policy : "Default"
+            boot_drive          = b.boot_drive != null ? b.boot_drive : true
+            disk_cache          = b.disk_cache != null ? b.disk_cache : "Default"
+            expand_to_available = b.expand_to_available != null ? b.expand_to_available : true
+            read_policy         = b.read_policy != null ? b.read_policy : "Default"
+            size                = b.size != null ? b.size : 20
+            strip_size          = b.strip_size != null ? b.strip_size : 64
+            write_policy        = b.write_policy != null ? b.write_policy : "Default"
+          }
+        } : {}
       }
     ]
   ])
 
-  drive_group_level_1 = {
-    for k, v in local.drive_group_loop : v.key => v
+  drive_groups = {
+    for k, v in local.drive_groups_loop : v.key => v
   }
-
-  automatic_drive_group_loop = flatten([
-    for key, value in local.drive_group_level_1 : [
-      for k, v in value.automatic_drive_group : {
-        key                      = k
-        drive_group              = key
-        drives_per_span          = v.drives_per_span != null ? v.drives_per_span : 2
-        drive_type               = v.drive_type != null ? v.drive_type : "SSD"
-        minimum_drive_size       = v.minimum_drive_size != null ? v.minimum_drive_size : 100
-        num_dedicated_hot_spares = v.num_dedicated_hot_spares != null ? v.num_dedicated_hot_spares : ""
-        number_of_spans          = v.number_of_spans != null ? v.number_of_spans : 1
-        use_remaining_drives     = v.use_remaining_drives != null ? v.use_remaining_drives : false
-      }
-    ]
-  ])
-
-  automatic_drive_group = {
-    for k, v in local.automatic_drive_group_loop : v.key => v
-  }
-
-  manual_drive_group_loop = flatten([
-    for key, value in local.drive_group_level_1 : [
-      for k, v in value.manual_drive_group : {
-        key                  = k
-        dedicated_hot_spares = v.dedicated_hot_spares != null ? v.dedicated_hot_spares : ""
-        drive_array_spans    = v.drive_array_spans != null ? v.drive_array_spans : {}
-        drive_group          = key
-      }
-    ]
-  ])
-
-  manual_drive_group = {
-    for k, v in local.manual_drive_group_loop : v.key => v
-  }
-
-  drive_span_loop = flatten([
-    for key, value in local.manual_drive_group : [
-      for k, v in value.drive_array_spans : {
-        key                = k
-        slots              = v.slots != null ? v.slots : ""
-        manual_drive_group = key
-      }
-    ]
-  ])
-
-  drive_array_spans = {
-    for k, v in local.drive_span_loop : v.key => v
-  }
-
-  drive_group = {
-    for k, v in local.drive_group_level_1 : k => {
-      automatic_drive_group = { for key, value in local.automatic_drive_group : key => value if value.drive_group == k }
-      manual_drive_group = {
-        for key, value in local.manual_drive_group : key => {
-          dedicated_hot_spares = value.dedicated_hot_spares
-          drive_array_spans = [
-            for y, z in local.drive_array_spans : {
-              additional_properties = ""
-              class_id              = "storage.SpanDrives"
-              object_type           = "storage.SpanDrives"
-              slots                 = z.slots
-            } if z.manual_drive_group == key
-          ]
-        } if value.drive_group == k
-      }
-      organization   = v.organization
-      raid_level     = v.raid_level
-      storage_policy = v.storage_policy
-      tags           = v.tags
-      virtual_drives = v.virtual_drives
-    }
-  }
-
 
   #__________________________________________________________
   #
@@ -2013,20 +2292,70 @@ locals {
     }
   }
 
-  vlans_loop = flatten([
+  /*
+  Loop 1 is to determine if the vlan_list is:
+  * A Single number 1
+  * A Range of numbers 1-5
+  * A List of numbers 1-5,10-15
+  And then to return these values as a list
+  */
+  vlans_loop_1 = flatten([
     for key, value in var.vlan_policies : [
-      for v in value.vlans : {
+      for k, v in value.vlans : {
         auto_allow_on_uplinks = v.auto_allow_on_uplinks != null ? v.auto_allow_on_uplinks : false
+        key                   = k
         multicast_policy      = v.multicast_policy != null ? v.multicast_policy : ""
         name                  = v.name != null ? v.name : ""
         native_vlan           = v.native_vlan != null ? v.native_vlan : false
-        vlan_list             = v.vlan_list != null ? v.vlan_list : ""
-        vlan_policy           = key
+        vlan_list             = v.vlan_list
+        vlan_split = length(regexall("-", v.vlan_list)) > 0 ? tolist(split(",", v.vlan_list)) : length(
+          regexall(",", v.vlan_list)) > 0 ? tolist(split(",", v.vlan_list)
+        ) : [v.vlan_list]
+        vlan_policy = key
       }
     ]
   ])
+
+
+  # Loop 2 takes a list that contains a "-" or a "," and expands those values
+  # into a full list.  So [1-5] becomes [1, 2, 3, 4, 5]
+  vlans_loop_2 = flatten([
+    for k, v in local.vlans_loop_1 : {
+      auto_allow_on_uplinks = v.auto_allow_on_uplinks
+      key                   = v.key
+      multicast_policy      = v.multicast_policy
+      name                  = v.name
+      native_vlan           = v.native_vlan
+      vlan_policy           = v.vlan_policy
+      vlan_list             = v.vlan_list
+      vlan_list_ranges = length(regexall("(,|-)", jsonencode(v.vlan_list))) > 0 ? flatten([
+        for s in v.vlan_split : length(regexall("-", s)) > 0 ? [for v in range(tonumber(
+          element(split("-", s), 0)), (tonumber(element(split("-", s), 1)) + 1)
+        ) : tonumber(v)] : [s]
+      ]) : v.vlan_split
+    }
+  ])
+
+  # Loop 3 will take the vlan_list created in Loop 2 and expand this
+  # out to a map of objects per vlan.
+  vlans_loop_3 = flatten([
+    for k, v in local.vlans_loop_2 : [
+      for s in v.vlan_list_ranges : {
+        auto_allow_on_uplinks = v.auto_allow_on_uplinks
+        key                   = v.key
+        multicast_policy      = v.multicast_policy
+        name                  = v.name
+        native_vlan           = v.native_vlan
+        vlan_id               = s
+        vlan_list             = v.vlan_list
+        vlan_policy           = v.vlan_policy
+      }
+    ]
+  ])
+
+  # And lastly loop3's list is converted back to a map of objects
   vlans = {
-    for k, v in local.vlans_loop : k => v
+    for k, v in local.vlans_loop_3 : "${v.vlan_policy}_${v.key}_${v.vlan_id}" => v
   }
 
   #__________________________________________________________

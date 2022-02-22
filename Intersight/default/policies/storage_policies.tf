@@ -54,12 +54,12 @@ variable "storage_policies" {
       * Default - Use platform default read ahead mode.
       * ReadAhead - Use read ahead mode for the policy.
       * NoReadAhead - Do not use read ahead mode for the policy.
-    - strip_size - Desired strip size - Allowed values are 64KiB, 128KiB, 256KiB, 512KiB, 1024KiB.
-      * 64KiB - Number of bytes in a strip is 64 Kibibytes.
-      * 128KiB - Number of bytes in a strip is 128 Kibibytes.
-      * 256KiB - Number of bytes in a strip is 256 Kibibytes.
-      * 512KiB - Number of bytes in a strip is 512 Kibibytes.
-      * 1MiB - Number of bytes in a strip is 1024 Kibibytes or 1 Mebibyte.
+    - strip_size - Desired strip size - Allowed values are 64, 128, 256, 512, 1024.
+      * 64 - Number of bytes in a strip is 64 Kibibytes.
+      * 128 - Number of bytes in a strip is 128 Kibibytes.
+      * 256 - Number of bytes in a strip is 256 Kibibytes.
+      * 512 - Number of bytes in a strip is 512 Kibibytes.
+      * 1024 - Number of bytes in a strip is 1024 Kibibytes or 1 Mebibyte.
     - write_policy:(string) Write mode to be used to write data to this virtual drive.
       * Default - Use platform default write mode.
       * WriteThrough - Data is written through the cache and to the physical drives. Performance is improved, because subsequent reads of that data can be satisfied from the cache.
@@ -121,12 +121,12 @@ variable "storage_policies" {
         - Default - Use platform default read ahead mode.
         - ReadAhead - Use read ahead mode for the policy.
         - NoReadAhead - Do not use read ahead mode for the policy.
-      * strip_size:(int) Desired strip size - Allowed values are 64KiB, 128KiB, 256KiB, 512KiB, 1024KiB.
-        - 64KiB - Number of bytes in a strip is 64 Kibibytes.
-        - 128KiB - Number of bytes in a strip is 128 Kibibytes.
-        - 256KiB - Number of bytes in a strip is 256 Kibibytes.
-        - 512KiB - Number of bytes in a strip is 512 Kibibytes.
-        - 1MiB - Number of bytes in a strip is 1024 Kibibytes or 1 Mebibyte.
+      * strip_size:(int) Desired strip size - Allowed values are 64, 128, 256, 512, 1024.
+        - 64 - Number of bytes in a strip is 64 Kibibytes.
+        - 128 - Number of bytes in a strip is 128 Kibibytes.
+        - 256 - Number of bytes in a strip is 256 Kibibytes.
+        - 512 - Number of bytes in a strip is 512 Kibibytes.
+        - 1024 - Number of bytes in a strip is 1024 Kibibytes or 1 Mebibyte.
       * write_policy:(string) Write mode to be used to write data to this virtual drive.
         - Default - Use platform default write mode.
         - WriteThrough - Data is written through the cache and to the physical drives. Performance is improved, because subsequent reads of that data can be satisfied from the cache.
@@ -146,13 +146,13 @@ variable "storage_policies" {
       organization = optional(string)
       single_drive_raid_configuration = optional(map(object(
         {
-          access_policy = string
-          drive_cache   = string
+          access_policy = optional(string)
+          drive_cache   = optional(string)
           drive_slots   = string
-          enable        = bool
-          read_policy   = string
-          strip_size    = string
-          write_policy  = string
+          enable        = optional(bool)
+          read_policy   = optional(string)
+          strip_size    = optional(string)
+          write_policy  = optional(string)
         }
       )))
       tags                     = optional(list(map(string)))
@@ -162,11 +162,11 @@ variable "storage_policies" {
         {
           automatic_drive_group = optional(map(object(
             {
-              drive_type               = string
-              drives_per_span          = number
-              minimum_drive_size       = number
+              drive_type               = optional(string)
+              drives_per_span          = optional(number)
+              minimum_drive_size       = optional(number)
               num_dedicated_hot_spares = optional(number)
-              number_of_spans          = number
+              number_of_spans          = optional(number)
               use_remaining_drives     = optional(bool)
             }
           )))
@@ -183,14 +183,14 @@ variable "storage_policies" {
           raid_level = optional(string)
           virtual_drives = optional(map(object(
             {
-              access_policy       = string
-              boot_drive          = bool
-              disk_cache          = string
-              expand_to_available = bool
-              read_policy         = string
-              size                = number
-              strip_size          = number
-              write_policy        = string
+              access_policy       = optional(string)
+              boot_drive          = optional(bool)
+              disk_cache          = optional(string)
+              expand_to_available = optional(bool)
+              read_policy         = optional(string)
+              size                = optional(number)
+              strip_size          = optional(number)
+              write_policy        = optional(string)
             }
           )))
         }
@@ -271,7 +271,7 @@ resource "intersight_storage_drive_group" "drive_group" {
     local.org_moids,
     intersight_storage_storage_policy.storage_policies
   ]
-  for_each   = local.drive_group
+  for_each   = local.drive_groups
   name       = each.key
   raid_level = each.value.raid_level
   storage_policy {
