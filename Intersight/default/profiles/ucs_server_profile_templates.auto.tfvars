@@ -12,7 +12,7 @@ ucs_server_profile_templates = {
     #
     # Compute Configuration
     #___________________________
-    bios_policy          = "VMware"
+    bios_policy          = "M6_VMware_tpm"
     boot_order_policy    = "VMware_M2_pxe"
     uuid_pool            = "VMware"
     power_policy         = "Server"

@@ -10,7 +10,6 @@ ucs_server_profiles = {
     organization                = "default"
     serial_number               = "FCH254674MX"
     server_assignment_mode      = "Static"
-    storage_policy              = ""
     ucs_server_profile_template = "VMware_M2_pxe"
     tags                        = []
   }
@@ -20,7 +19,6 @@ ucs_server_profiles = {
     organization                = "default"
     serial_number               = "FCH25417F84"
     server_assignment_mode      = "Static"
-    storage_policy              = ""
     ucs_server_profile_template = "VMware_M2_pxe"
     tags                        = []
   }
@@ -30,7 +28,6 @@ ucs_server_profiles = {
     organization                = "default"
     serial_number               = "FCH2601712X"
     server_assignment_mode      = "Static"
-    storage_policy              = ""
     ucs_server_profile_template = "VMware_M2_pxe"
     tags                        = []
   }
@@ -40,7 +37,6 @@ ucs_server_profiles = {
     organization                = "default"
     serial_number               = "FCH260170JD"
     server_assignment_mode      = "Static"
-    storage_policy              = ""
     ucs_server_profile_template = "VMware_M2_pxe"
     tags                        = []
   }
@@ -50,7 +46,6 @@ ucs_server_profiles = {
     organization                = "default"
     serial_number               = "FCH260170YZ"
     server_assignment_mode      = "Static"
-    storage_policy              = ""
     ucs_server_profile_template = "VMware_M2_pxe"
     tags                        = []
   }
@@ -69,7 +64,6 @@ ucs_server_profiles = {
     organization                = "default"
     serial_number               = "FCH260170P6"
     server_assignment_mode      = "Static"
-    storage_policy              = ""
     ucs_server_profile_template = "VMware_M2_pxe"
     tags                        = []
   }
