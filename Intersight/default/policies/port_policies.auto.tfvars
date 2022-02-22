@@ -37,16 +37,16 @@ port_policies = {
       }
     }
     port_channel_fc_uplinks = {
-      "1" = {
-        admin_speed  = "16Gbps"
+      "7" = {
+        admin_speed  = "32Gbps"
         fill_pattern = "Arbff"
         interfaces = [
           {
-            port_id = 1
+            port_id = 7
             slot_id = 1
           },
           {
-            port_id = 2
+            port_id = 8
             slot_id = 1
           },
         ]
@@ -57,7 +57,7 @@ port_policies = {
     port_modes = [
       {
         custom_mode = "FibreChannel"
-        port_list   = [1, 4]
+        port_list   = [1, 8]
         slot_id     = 1
       }
     ]
@@ -68,7 +68,7 @@ port_policies = {
     port_role_fcoe_uplinks     = {}
     port_role_servers = {
       "1" = {
-        port_list = "5-18"
+        port_list = "9-18"
         slot_id   = 1
       }
     }
@@ -107,16 +107,16 @@ port_policies = {
       }
     }
     port_channel_fc_uplinks = {
-      "1" = {
-        admin_speed  = "16Gbps"
+      "7" = {
+        admin_speed  = "32Gbps"
         fill_pattern = "Arbff"
         interfaces = [
           {
-            port_id = 1
+            port_id = 7
             slot_id = 1
           },
           {
-            port_id = 2
+            port_id = 8
             slot_id = 1
           },
         ]
@@ -127,7 +127,7 @@ port_policies = {
     port_modes = [
       {
         custom_mode = "FibreChannel"
-        port_list   = [1, 4]
+        port_list   = [1, 8]
         slot_id     = 1
       }
     ]
@@ -138,7 +138,7 @@ port_policies = {
     port_role_fcoe_uplinks     = {}
     port_role_servers = {
       "1" = {
-        port_list = "5-18"
+        port_list = "9-18"
         slot_id   = 1
       }
     }
