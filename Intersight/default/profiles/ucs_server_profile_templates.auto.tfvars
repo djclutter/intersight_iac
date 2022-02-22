@@ -16,7 +16,7 @@ ucs_server_profile_templates = {
     boot_order_policy    = "VMware_M2_pxe"
     uuid_pool            = "VMware"
     power_policy         = "Server"
-    virtual_media_policy = ""
+    virtual_media_policy = "default"
     #___________________________
     #
     # Management Configuration
@@ -34,7 +34,7 @@ ucs_server_profile_templates = {
     # Storage Configuration
     #___________________________
     sd_card_policy = ""
-    storage_policy = ""
+    storage_policy = "M2_Raid1"
     #___________________________
     #
     # Network Configuration
