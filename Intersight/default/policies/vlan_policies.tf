@@ -1,53 +1,66 @@
 #_________________________________________________________________________
 #
-# Intersight VSAN Policies Variables
-# GUI Location: Configure > Policies > Create Policy > VSAN
+# Intersight Power Policies Variables
+# GUI Location: Configure > Policies > Create Policy > Power > Start
 #_________________________________________________________________________
 
-variable "vlan_policies" {
+variable "power_policies" {
   default = {
     default = {
-      description  = ""
-      organization = "default"
-      tags         = []
-      vlans = {
-        default = {
-          auto_allow_on_uplinks = false
-          multicast_policy      = ""
-          name                  = "vlan-{vlan_id}"
-          native_vlan           = false
-          vlan_list             = ""
-        }
-      }
+      description               = ""
+      dynamic_power_rebalancing = "Enabled"
+      organization              = "default"
+      power_allocation          = 0
+      power_priority            = "Low"
+      power_profiling           = "Enabled"
+      power_redunancy           = "Grid"
+      power_restore             = "AlwaysOff"
+      power_save_mode           = "Enabled"
+      tags                      = []
     }
   }
   description = <<-EOT
-  key - Name of the VLAN Policy.
+  key - Name of the Power Policy.
   * description - Description to Assign to the Policy.
+  * dynamic_power_rebalancing - Sets the Dynamic Power Rebalancing of the System. This option is only supported for Cisco UCS X series Chassis.
+    - Enabled - Set the value to Enabled.
+    - Disabled - Set the value to Disabled.
   * organization - Name of the Intersight Organization to assign this Policy to.
     - https://intersight.com/an/settings/organizations/
+  * power_allocation - Sets the Allocated Power Budget of the System (in Watts). This field is only supported for Cisco UCS X series Chassis.
+  * power_priority - Sets the Power Priority of the System. This field is only supported for Cisco UCS X series servers.
+    - Low - Set the value to Low.
+    - Medium - Set the value to Medium.
+    - High - Set the value to High.
+  * power_profiling - Sets the Power Profiling of the Server. This field is only supported for Cisco UCS X series servers.
+    - Enabled - Set the value to Enabled.
+    - Disabled - Set the value to Disabled.
+  * power_redunancy - Sets the Power Redundancy of the System. N+2 mode is only supported for Cisco UCS X series Chassis.
+    - Grid - Grid Mode requires two power sources. If one source fails, the surviving PSUs connected to the other source provides power to the chassis.
+    - NotRedundant - Power Manager turns on the minimum number of PSUs required to support chassis power requirements. No Redundant PSUs are maintained.
+    - N+1 - Power Manager turns on the minimum number of PSUs required to support chassis power requirements plus one additional PSU for redundancy.
+    - N+2 - Power Manager turns on the minimum number of PSUs required to support chassis power requirements plus two additional PSU for redundancy. This Mode is only supported for UCS X series Chassis.
+  * power_restore - Sets the Power Restore State of the Server.
+    - AlwaysOff - Set the Power Restore Mode to Off.
+    - AlwaysOn - Set the Power Restore Mode to On.
+    - LastState - Set the Power Restore Mode to LastState.
+  * power_save_mode - Sets the Power Save mode of the System. This option is only supported for Cisco UCS X series Chassis.
+    - Enabled - Set the value to Enabled.
+    - Disabled - Set the value to Disabled.
   * tags - List of Key/Value Pairs to Assign as Attributes to the Policy.
-  * vlans - List of VSANs to add to the VSAN Policy.
-    - auto_allow_on_uplinks - Default is false.  Used to determine whether this VLAN will be allowed on all uplink ports and PCs in this FI.
-    - multicast_policy - Name of the Multicast Policy to assign to the VLAN.
-    - name - The 'name' used to identify this VLAN.  When configuring a single VLAN this will be used as the Name.  When configuring multiple VLANs in a list the name will be used as a Name Prefix.
-    - native_vlan - Default is false.  Used to define whether this VLAN is to be classified as 'native' for traffic in this FI.
-    - vlan_list - (REQUIRED).  The identifier for this Virtual LAN.  This can either be one vlan like "10" or a list of VLANs: "1,10,20-30".
   EOT
   type = map(object(
     {
-      description  = optional(string)
-      organization = optional(string)
-      tags         = optional(list(map(string)))
-      vlans = optional(map(object(
-        {
-          auto_allow_on_uplinks = optional(bool)
-          multicast_policy      = string
-          name                  = optional(string)
-          native_vlan           = optional(bool)
-          vlan_list             = string
-        }
-      )))
+      description               = optional(string)
+      dynamic_power_rebalancing = optional(string)
+      organization              = optional(string)
+      power_allocation          = optional(number)
+      power_priority            = optional(string)
+      power_profiling           = optional(string)
+      power_redunancy           = optional(string)
+      power_restore             = optional(string)
+      power_save_mode           = optional(string)
+      tags                      = optional(list(map(string)))
     }
   ))
 }
@@ -55,29 +68,31 @@ variable "vlan_policies" {
 
 #_________________________________________________________________________
 #
-# VLAN Policies
-# GUI Location: Configure > Policies > Create Policy > VLAN
+# Power Policies
+# GUI Location: Configure > Policies > Create Policy > Power > Start
 #_________________________________________________________________________
 
-
-resource "intersight_fabric_eth_network_policy" "vlan_policies" {
+resource "intersight_power_policy" "power_policies" {
   depends_on = [
-    local.org_moids,
-    local.ucs_domain_policies
+    local.org_moids
   ]
-  for_each    = var.vlan_policies
-  description = each.value.description != "" ? each.value.description : "${each.key} VLAN Policy"
-  name        = each.key
+  for_each = local.power_policies
+  additional_properties = jsonencode(
+    {
+      DynamicRebalancing = each.value.dynamic_power_rebalancing
+      PowerPriority      = each.value.power_priority
+      PowerSaveMode      = each.value.power_save_mode
+    }
+  )
+  allocated_budget    = each.value.power_allocation
+  description         = each.value.description != "" ? each.value.description : "${each.key} Power Policy"
+  name                = each.key
+  power_profiling     = each.value.power_profiling
+  power_restore_state = each.value.power_restore
+  redundancy_mode     = each.value.power_redunancy
   organization {
     moid        = local.org_moids[each.value.organization].moid
     object_type = "organization.Organization"
-  }
-  dynamic "profiles" {
-    for_each = { for k, v in local.ucs_domain_policies : k => v if local.ucs_domain_policies[k].vlan_policy == each.key }
-    content {
-      moid        = profiles.value.moid
-      object_type = profiles.value.object_type
-    }
   }
   dynamic "tags" {
     for_each = length(each.value.tags) > 0 ? each.value.tags : local.tags
@@ -86,30 +101,4 @@ resource "intersight_fabric_eth_network_policy" "vlan_policies" {
       value = tags.value.value
     }
   }
-}
-
-#______________________________________________
-#
-# Assign VLANs to VLAN Policies
-#______________________________________________
-
-module "vlan_policies_add_vlans" {
-  depends_on = [
-    local.org_moids,
-    intersight_fabric_multicast_policy.multicast_policies,
-    intersight_fabric_eth_network_policy.vlan_policies
-  ]
-  version               = ">=0.9.6"
-  source                = "terraform-cisco-modules/imm/intersight//modules/vlan_policy_add_vlan_list"
-  for_each              = local.vlans
-  auto_allow_on_uplinks = each.value.auto_allow_on_uplinks
-  multicast_policy_moid = intersight_fabric_multicast_policy.multicast_policies[
-    each.value.multicast_policy
-  ].moid
-  name        = each.value.name != "" ? each.value.name : "VLAN"
-  native_vlan = each.value.native_vlan
-  vlan_list   = each.value.vlan_list
-  vlan_policy_moid = intersight_fabric_eth_network_policy.vlan_policies[
-    each.value.vlan_policy
-  ].moid
 }
