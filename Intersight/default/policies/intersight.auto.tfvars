@@ -3,9 +3,9 @@
 # Terraform Cloud Variables
 #__________________________________________________________
 
-tfc_organization        = "Stryker_Infrastructure"
-ws_pools                = "default_pools"
-ws_ucs_domain_profiles  = "default_ucs_domain_profiles"
+tfc_organization       = "Stryker_Infrastructure"
+ws_pools               = "default_pools"
+ws_ucs_domain_profiles = "default_ucs_domain_profiles"
 
 /*
   We highly recommend that for the terraform_cloud_token you use an environment variable for input:
