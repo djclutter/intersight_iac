@@ -384,8 +384,8 @@ class quick_start(object):
                     write_to_template(self, **templateVars)
                     templateVars["initial_write"] = False
 
-                    # Configure Link Control Policy
-                    name = f'{domain_name}-vg'
+                    # Configure Ethernet Network Group Policy
+                    name = f'{domain_name}'
                     templateVars["name"] = name
                     templateVars["descr"] = f'{name} Ethernet Network Group Policy'
                     templateVars["allowed_vlans"] = VlanList
@@ -1331,8 +1331,6 @@ class quick_start(object):
                                     templateVars["vnics"].append(vnic)
                                     Order += 1
 
-                            print(templateVars["vnics"])
-                            exit
                             # Write Policies to Template File
                             templateVars["template_file"] = '%s.jinja2' % (templateVars["template_type"])
                             write_to_template(self, **templateVars)
@@ -1567,7 +1565,7 @@ class quick_start(object):
                             write_to_template(self, **templateVars)
                             templateVars["initial_write"] = False
 
-                            name = 'VMWare_KVM'
+                            name = 'VMware_KVM'
                             templateVars["name"] = name
                             templateVars["descr"] = f'{name} KVM IP Pool'
                             templateVars["assignment_order"] = 'sequential'
@@ -2094,7 +2092,7 @@ class quick_start(object):
                             name = org
                             templateVars["name"] = name
                             templateVars["descr"] = f'{name} IMC Access Policy'
-                            templateVars["inband_ip_pool"] = 'VMWare_KVM'
+                            templateVars["inband_ip_pool"] = 'VMware_KVM'
                             templateVars["inband_vlan_id"] = imc_vlan
                             templateVars["ipv4_address_configuration"] = True
                             templateVars["ipv6_address_configuration"] = False
@@ -2186,8 +2184,11 @@ class quick_start(object):
                                 templateVars["allocated_budget"] = 0
                                 templateVars["name"] = name
                                 templateVars["descr"] = f'{name} Power Policy'
-                                if name == 'Server': templateVars["power_restore_state"] = 'LastState'
-                                elif name == '9508': templateVars["allocated_budget"] = 5600
+                                if name == 'Server':
+                                    templateVars["power_restore"] = 'LastState'
+                                    
+                                elif name == '9508':
+                                    templateVars["power_allocation"] = 5600
 
                                 templateVars["power_redundancy"] = 'Grid'
 
@@ -2413,9 +2414,9 @@ class quick_start(object):
 
                     #_______________________________________________________________________
                     #
-                    # Configure UCS Chassis Profile
+                    # Configure UCS Server Profiles
                     #_______________________________________________________________________
-                    profiles(name_prefix, org, self.type).quick_start_server_profiles(**templateVars)
+                    profiles(name_prefix, org, self.type).quick_start_server_profiles(jsonData, easy_jsonData, **templateVars)
                     profiles(name_prefix, org, self.type).quick_start_server_templates(**templateVars)
                     policy_loop = True
                     configure_loop = True
@@ -2629,7 +2630,8 @@ class quick_start(object):
                             name = 'VMware'
                             templateVars["name"] = name
                             templateVars["descr"] = f'{name} BIOS Policy'
-                            templateVars["bios_template"] = 'VMware'
+                            templateVars["bios_template"] = 'Virtualization'
+
 
                             # Write Policies to Template File
                             templateVars["template_file"] = '%s.jinja2' % (templateVars["template_type"])
@@ -2714,7 +2716,7 @@ class quick_start(object):
                             name = org
                             templateVars["name"] = name
                             templateVars["descr"] = f'{name} IMC Access Policy'
-                            templateVars["inband_ip_pool"] = 'VMWare_KVM'
+                            templateVars["inband_ip_pool"] = 'VMware_KVM'
                             templateVars["ipv4_address_configuration"] = True
                             templateVars["ipv6_address_configuration"] = False
 
@@ -3026,7 +3028,7 @@ class quick_start(object):
             if configure == 'Y' or configure == '':
                 # Trusted Platform Module
                 templateVars["Description"] = 'Flag to Determine if the Servers have a TPM Installed.'
-                templateVars["varInput"] = f'Will these servers have a TPM Module Installed?'
+                templateVars["varInput"] = f'Will any of these servers have a TPM Module Installed?'
                 templateVars["varDefault"] = 'Y'
                 templateVars["varName"] = 'TPM Installed'
                 tpm_installed = varBoolLoop(**templateVars)
@@ -3047,17 +3049,26 @@ class quick_start(object):
                 templateVars["initial_write"] = False
 
                 # Configure BIOS Policy
-                name = 'VMware'
-                templateVars["name"] = name
-                templateVars["descr"] = f'{name} BIOS Policy'
-                if tpm_installed == True:
-                    templateVars["policy_template"] = 'VMware_tpm'
-                else:
-                    templateVars["policy_template"] = 'VMware'
+                template_names = ['M5_VMware', 'M5_VMware_tpm', 'M6_VMware_tpm']
+                for bname in template_names:
+                    name = bname
+                    templateVars["name"] = name
+                    templateVars["descr"] = f'{name} BIOS Policy'
+                    if bname == 'M5_VMware':
+                        templateVars["policy_template"] = 'Virtualization'
+                    elif name == 'M5_VMware_tpm':
+                        templateVars["policy_template"] = 'Virtualization_tpm'
+                    elif name == 'M6_VMware_tpm':
+                        templateVars["policy_template"] = 'M6_Virtualization_tpm'
+                    templateVars["bios_settings"] = {
+                        'execute_disable_bit':'disabled',
+                        'lv_ddr_mode':'Auto',
+                        'serial_port_aenable':'disabled'
+                    }
 
-                # Write Policies to Template File
-                templateVars["template_file"] = '%s.jinja2' % (templateVars["template_type"])
-                write_to_template(self, **templateVars)
+                    # Write Policies to Template File
+                    templateVars["template_file"] = '%s.jinja2' % (templateVars["template_type"])
+                    write_to_template(self, **templateVars)
 
                 # Close the Template file
                 templateVars["template_file"] = 'template_close.jinja2'
