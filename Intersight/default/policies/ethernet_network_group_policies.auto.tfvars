@@ -12,16 +12,9 @@ ethernet_network_group_policies = {
     tags          = []
   }
   "MGMT" = {
-    allowed_vlans = "715"
+    allowed_vlans = "1,708-710,714,715,852,899,904,909,1057"
     description   = "MGMT Ethernet Network Group Policy"
     native_vlan   = 715
-    organization  = "default"
-    tags          = []
-  }
-  "VMOTION" = {
-    allowed_vlans = "714"
-    description   = "VMOTION Ethernet Network Group Policy"
-    native_vlan   = 714
     organization  = "default"
     tags          = []
   }
@@ -29,12 +22,6 @@ ethernet_network_group_policies = {
     allowed_vlans = "714"
     description   = "STORAGE Ethernet Network Group Policy"
     native_vlan   = 714
-    organization  = "default"
-    tags          = []
-  }
-  "DATA" = {
-    allowed_vlans = "708-710,714,715,852,899,904,909,1057"
-    description   = "DATA Ethernet Network Group Policy"
     organization  = "default"
     tags          = []
   }

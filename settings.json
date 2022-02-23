@@ -1,6 +1,6 @@
 {
     "servers": {
-        "asgard-esxi01.rich.ciscolabs.com": {
+        "kzoesx01.rich.ciscolabs.com": {
             "domain": "rich.ciscolabs.com",
             "dns_servers": [
                 "10.101.128.15",
@@ -11,23 +11,23 @@
                 "10.101.128.15",
                 "10.101.128.16"
             ],
-            "serial": "FCH213271VU",
+            "serial": "FCH254674MX",
             "timezone": "America/Detroit",
             "vcenter": "asgard-vcenter.rich.ciscolabs.com",
             "vhbas": {
                 "HBA-B": {
-                    "wwpn_address": "20:00:00:25:B5:A5:B0:02"
+                    "wwpn_address": "20:00:00:25:B5:00:B0:09"
                 },
                 "HBA-A": {
-                    "wwpn_address": "20:00:00:25:B5:A5:A0:02"
+                    "wwpn_address": "20:00:00:25:B5:00:A0:09"
                 }
             },
             "vswitches": [
                 {
                     "name": "vswitch0",
                     "type": "standard",
-                    "maca": "00:25:B5:A5:A0:01",
-                    "macb": "00:25:B5:A5:B0:01",
+                    "maca": "00:25:B5:00:A0:09",
+                    "macb": "00:25:B5:00:B0:09",
                     "mtu": 9000,
                     "vmks": {
                         "vmk0": {
@@ -45,8 +45,8 @@
                 {
                     "name": "Odin",
                     "type": "vds",
-                    "maca": "00:25:B5:A5:C0:01",
-                    "macb": "00:25:B5:A5:D0:01",
+                    "maca": "00:25:B5:00:C0:09",
+                    "macb": "00:25:B5:00:D0:09",
                     "mtu": 9000,
                     "vmks": {
                         "vmk1": {
@@ -64,8 +64,8 @@
                 {
                     "name": "Loki",
                     "type": "vds",
-                    "maca": "00:25:B5:A5:E0:01",
-                    "macb": "00:25:B5:A5:F0:01",
+                    "maca": "00:25:B5:00:E0:09",
+                    "macb": "00:25:B5:00:F0:09",
                     "mtu": 9000,
                     "vmks": {
                         "vmk2": {
@@ -83,14 +83,14 @@
                 {
                     "name": "Thor",
                     "type": "vds",
-                    "maca": "00:25:B5:A5:10:01",
-                    "macb": "00:25:B5:A5:20:01",
+                    "maca": "00:25:B5:00:10:09",
+                    "macb": "00:25:B5:00:20:09",
                     "mtu": 9000,
                     "vmks": {}
                 }
             ]
         },
-        "asgard-esxi02.rich.ciscolabs.com": {
+        "kzoesx02.rich.ciscolabs.com": {
             "domain": "rich.ciscolabs.com",
             "dns_servers": [
                 "10.101.128.15",
@@ -101,23 +101,23 @@
                 "10.101.128.15",
                 "10.101.128.16"
             ],
-            "serial": "FCH21427JDU",
+            "serial": "FCH25417F84",
             "timezone": "America/Detroit",
             "vcenter": "asgard-vcenter.rich.ciscolabs.com",
             "vhbas": {
                 "HBA-B": {
-                    "wwpn_address": "20:00:00:25:B5:A5:B0:01"
+                    "wwpn_address": "20:00:00:25:B5:00:B0:0B"
                 },
                 "HBA-A": {
-                    "wwpn_address": "20:00:00:25:B5:A5:A0:01"
+                    "wwpn_address": "20:00:00:25:B5:00:A0:0B"
                 }
             },
             "vswitches": [
                 {
                     "name": "vswitch0",
                     "type": "standard",
-                    "maca": "00:25:B5:A5:A0:00",
-                    "macb": "00:25:B5:A5:B0:00",
+                    "maca": "00:25:B5:00:A0:0B",
+                    "macb": "00:25:B5:00:B0:0B",
                     "mtu": 9000,
                     "vmks": {
                         "vmk0": {
@@ -135,8 +135,8 @@
                 {
                     "name": "Odin",
                     "type": "vds",
-                    "maca": "00:25:B5:A5:C0:00",
-                    "macb": "00:25:B5:A5:D0:00",
+                    "maca": "00:25:B5:00:C0:0B",
+                    "macb": "00:25:B5:00:D0:0B",
                     "mtu": 9000,
                     "vmks": {
                         "vmk1": {
@@ -154,8 +154,8 @@
                 {
                     "name": "Loki",
                     "type": "vds",
-                    "maca": "00:25:B5:A5:E0:00",
-                    "macb": "00:25:B5:A5:F0:00",
+                    "maca": "00:25:B5:00:E0:0B",
+                    "macb": "00:25:B5:00:F0:0B",
                     "mtu": 9000,
                     "vmks": {
                         "vmk2": {
@@ -173,8 +173,548 @@
                 {
                     "name": "Thor",
                     "type": "vds",
-                    "maca": "00:25:B5:A5:10:00",
-                    "macb": "00:25:B5:A5:20:00",
+                    "maca": "00:25:B5:00:10:0B",
+                    "macb": "00:25:B5:00:20:0B",
+                    "mtu": 9000,
+                    "vmks": {}
+                }
+            ]
+        },
+        "kzoesx03.rich.ciscolabs.com": {
+            "domain": "rich.ciscolabs.com",
+            "dns_servers": [
+                "10.101.128.15",
+                "10.101.128.16"
+            ],
+            "license_type": "enterprise",
+            "ntp_servers": [
+                "10.101.128.15",
+                "10.101.128.16"
+            ],
+            "serial": "FCH2601712X",
+            "timezone": "America/Detroit",
+            "vcenter": "asgard-vcenter.rich.ciscolabs.com",
+            "vhbas": {
+                "HBA-B": {
+                    "wwpn_address": "20:00:00:25:B5:00:B0:0D"
+                },
+                "HBA-A": {
+                    "wwpn_address": "20:00:00:25:B5:00:A0:0D"
+                }
+            },
+            "vswitches": [
+                {
+                    "name": "vswitch0",
+                    "type": "standard",
+                    "maca": "00:25:B5:00:A0:0D",
+                    "macb": "00:25:B5:00:B0:0D",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk0": {
+                            "ip": "10.92.101.53",
+                            "management": "true",
+                            "name": "vmk0",
+                            "netmask": "255.255.255.0",
+                            "port_group": "Management Network",
+                            "vlan_id": "",
+                            "vmotion": "false",
+                            "vswitch": "vswitch0"
+                        }
+                    }
+                },
+                {
+                    "name": "Odin",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:C0:0D",
+                    "macb": "00:25:B5:00:D0:0D",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk1": {
+                            "ip": "10.92.102.53",
+                            "management": "false",
+                            "name": "vmk1",
+                            "netmask": "255.255.255.0",
+                            "port_group": "prod|nets|vMotion",
+                            "vlan_id": "",
+                            "vmotion": "true",
+                            "vswitch": "Odin"
+                        }
+                    }
+                },
+                {
+                    "name": "Loki",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:E0:0D",
+                    "macb": "00:25:B5:00:F0:0D",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk2": {
+                            "ip": "10.92.103.53",
+                            "management": "false",
+                            "name": "vmk2",
+                            "netmask": "255.255.255.0",
+                            "port_group": "prod|nets|Storage",
+                            "vlan_id": "",
+                            "vmotion": "false",
+                            "vswitch": "Loki"
+                        }
+                    }
+                },
+                {
+                    "name": "Thor",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:10:0D",
+                    "macb": "00:25:B5:00:20:0D",
+                    "mtu": 9000,
+                    "vmks": {}
+                }
+            ]
+        },
+        "kzoesx04.rich.ciscolabs.com": {
+            "domain": "rich.ciscolabs.com",
+            "dns_servers": [
+                "10.101.128.15",
+                "10.101.128.16"
+            ],
+            "license_type": "enterprise",
+            "ntp_servers": [
+                "10.101.128.15",
+                "10.101.128.16"
+            ],
+            "serial": "FCH260170JD",
+            "timezone": "America/Detroit",
+            "vcenter": "asgard-vcenter.rich.ciscolabs.com",
+            "vhbas": {
+                "HBA-B": {
+                    "wwpn_address": "20:00:00:25:B5:00:B0:0A"
+                },
+                "HBA-A": {
+                    "wwpn_address": "20:00:00:25:B5:00:A0:0A"
+                }
+            },
+            "vswitches": [
+                {
+                    "name": "vswitch0",
+                    "type": "standard",
+                    "maca": "00:25:B5:00:A0:0A",
+                    "macb": "00:25:B5:00:B0:0A",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk0": {
+                            "ip": "10.92.101.54",
+                            "management": "true",
+                            "name": "vmk0",
+                            "netmask": "255.255.255.0",
+                            "port_group": "Management Network",
+                            "vlan_id": "",
+                            "vmotion": "false",
+                            "vswitch": "vswitch0"
+                        }
+                    }
+                },
+                {
+                    "name": "Odin",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:C0:0A",
+                    "macb": "00:25:B5:00:D0:0A",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk1": {
+                            "ip": "10.92.102.54",
+                            "management": "false",
+                            "name": "vmk1",
+                            "netmask": "255.255.255.0",
+                            "port_group": "prod|nets|vMotion",
+                            "vlan_id": "",
+                            "vmotion": "true",
+                            "vswitch": "Odin"
+                        }
+                    }
+                },
+                {
+                    "name": "Loki",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:E0:0A",
+                    "macb": "00:25:B5:00:F0:0A",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk2": {
+                            "ip": "10.92.103.54",
+                            "management": "false",
+                            "name": "vmk2",
+                            "netmask": "255.255.255.0",
+                            "port_group": "prod|nets|Storage",
+                            "vlan_id": "",
+                            "vmotion": "false",
+                            "vswitch": "Loki"
+                        }
+                    }
+                },
+                {
+                    "name": "Thor",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:10:0A",
+                    "macb": "00:25:B5:00:20:0A",
+                    "mtu": 9000,
+                    "vmks": {}
+                }
+            ]
+        },
+        "kzoesx05.rich.ciscolabs.com": {
+            "domain": "rich.ciscolabs.com",
+            "dns_servers": [
+                "10.101.128.15",
+                "10.101.128.16"
+            ],
+            "license_type": "enterprise",
+            "ntp_servers": [
+                "10.101.128.15",
+                "10.101.128.16"
+            ],
+            "serial": "FCH260170YZ",
+            "timezone": "America/Detroit",
+            "vcenter": "asgard-vcenter.rich.ciscolabs.com",
+            "vhbas": {
+                "HBA-B": {
+                    "wwpn_address": "20:00:00:25:B5:00:B0:0C"
+                },
+                "HBA-A": {
+                    "wwpn_address": "20:00:00:25:B5:00:A0:0C"
+                }
+            },
+            "vswitches": [
+                {
+                    "name": "vswitch0",
+                    "type": "standard",
+                    "maca": "00:25:B5:00:A0:0C",
+                    "macb": "00:25:B5:00:B0:0C",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk0": {
+                            "ip": "10.92.101.55",
+                            "management": "true",
+                            "name": "vmk0",
+                            "netmask": "255.255.255.0",
+                            "port_group": "Management Network",
+                            "vlan_id": "",
+                            "vmotion": "false",
+                            "vswitch": "vswitch0"
+                        }
+                    }
+                },
+                {
+                    "name": "Odin",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:C0:0C",
+                    "macb": "00:25:B5:00:D0:0C",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk1": {
+                            "ip": "10.92.102.55",
+                            "management": "false",
+                            "name": "vmk1",
+                            "netmask": "255.255.255.0",
+                            "port_group": "prod|nets|vMotion",
+                            "vlan_id": "",
+                            "vmotion": "true",
+                            "vswitch": "Odin"
+                        }
+                    }
+                },
+                {
+                    "name": "Loki",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:E0:0C",
+                    "macb": "00:25:B5:00:F0:0C",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk2": {
+                            "ip": "10.92.103.55",
+                            "management": "false",
+                            "name": "vmk2",
+                            "netmask": "255.255.255.0",
+                            "port_group": "prod|nets|Storage",
+                            "vlan_id": "",
+                            "vmotion": "false",
+                            "vswitch": "Loki"
+                        }
+                    }
+                },
+                {
+                    "name": "Thor",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:10:0C",
+                    "macb": "00:25:B5:00:20:0C",
+                    "mtu": 9000,
+                    "vmks": {}
+                }
+            ]
+        },
+        "kzoesx06.rich.ciscolabs.com": {
+            "domain": "rich.ciscolabs.com",
+            "dns_servers": [
+                "10.101.128.15",
+                "10.101.128.16"
+            ],
+            "license_type": "enterprise",
+            "ntp_servers": [
+                "10.101.128.15",
+                "10.101.128.16"
+            ],
+            "serial": "FCH260170HM",
+            "timezone": "America/Detroit",
+            "vcenter": "asgard-vcenter.rich.ciscolabs.com",
+            "vhbas": {
+                "HBA-B": {
+                    "wwpn_address": "20:00:00:25:B5:00:B0:0F"
+                },
+                "HBA-A": {
+                    "wwpn_address": "20:00:00:25:B5:00:A0:0F"
+                }
+            },
+            "vswitches": [
+                {
+                    "name": "vswitch0",
+                    "type": "standard",
+                    "maca": "00:25:B5:00:A0:0F",
+                    "macb": "00:25:B5:00:B0:0F",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk0": {
+                            "ip": "10.92.101.56",
+                            "management": "true",
+                            "name": "vmk0",
+                            "netmask": "255.255.255.0",
+                            "port_group": "Management Network",
+                            "vlan_id": "",
+                            "vmotion": "false",
+                            "vswitch": "vswitch0"
+                        }
+                    }
+                },
+                {
+                    "name": "Odin",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:C0:0F",
+                    "macb": "00:25:B5:00:D0:0F",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk1": {
+                            "ip": "10.92.102.56",
+                            "management": "false",
+                            "name": "vmk1",
+                            "netmask": "255.255.255.0",
+                            "port_group": "prod|nets|vMotion",
+                            "vlan_id": "",
+                            "vmotion": "true",
+                            "vswitch": "Odin"
+                        }
+                    }
+                },
+                {
+                    "name": "Loki",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:E0:0F",
+                    "macb": "00:25:B5:00:F0:0F",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk2": {
+                            "ip": "10.92.103.56",
+                            "management": "false",
+                            "name": "vmk2",
+                            "netmask": "255.255.255.0",
+                            "port_group": "prod|nets|Storage",
+                            "vlan_id": "",
+                            "vmotion": "false",
+                            "vswitch": "Loki"
+                        }
+                    }
+                },
+                {
+                    "name": "Thor",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:10:0F",
+                    "macb": "00:25:B5:00:20:0F",
+                    "mtu": 9000,
+                    "vmks": {}
+                }
+            ]
+        },
+        "kzoesx07.rich.ciscolabs.com": {
+            "domain": "rich.ciscolabs.com",
+            "dns_servers": [
+                "10.101.128.15",
+                "10.101.128.16"
+            ],
+            "license_type": "enterprise",
+            "ntp_servers": [
+                "10.101.128.15",
+                "10.101.128.16"
+            ],
+            "serial": "FCH260170P6",
+            "timezone": "America/Detroit",
+            "vcenter": "asgard-vcenter.rich.ciscolabs.com",
+            "vhbas": {
+                "HBA-B": {
+                    "wwpn_address": "20:00:00:25:B5:00:B0:08"
+                },
+                "HBA-A": {
+                    "wwpn_address": "20:00:00:25:B5:00:A0:08"
+                }
+            },
+            "vswitches": [
+                {
+                    "name": "vswitch0",
+                    "type": "standard",
+                    "maca": "00:25:B5:00:A0:08",
+                    "macb": "00:25:B5:00:B0:08",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk0": {
+                            "ip": "10.92.101.57",
+                            "management": "true",
+                            "name": "vmk0",
+                            "netmask": "255.255.255.0",
+                            "port_group": "Management Network",
+                            "vlan_id": "",
+                            "vmotion": "false",
+                            "vswitch": "vswitch0"
+                        }
+                    }
+                },
+                {
+                    "name": "Odin",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:C0:08",
+                    "macb": "00:25:B5:00:D0:08",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk1": {
+                            "ip": "10.92.102.57",
+                            "management": "false",
+                            "name": "vmk1",
+                            "netmask": "255.255.255.0",
+                            "port_group": "prod|nets|vMotion",
+                            "vlan_id": "",
+                            "vmotion": "true",
+                            "vswitch": "Odin"
+                        }
+                    }
+                },
+                {
+                    "name": "Loki",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:E0:08",
+                    "macb": "00:25:B5:00:F0:08",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk2": {
+                            "ip": "10.92.103.57",
+                            "management": "false",
+                            "name": "vmk2",
+                            "netmask": "255.255.255.0",
+                            "port_group": "prod|nets|Storage",
+                            "vlan_id": "",
+                            "vmotion": "false",
+                            "vswitch": "Loki"
+                        }
+                    }
+                },
+                {
+                    "name": "Thor",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:10:08",
+                    "macb": "00:25:B5:00:20:08",
+                    "mtu": 9000,
+                    "vmks": {}
+                }
+            ]
+        },
+        "kzoesx08.rich.ciscolabs.com": {
+            "domain": "rich.ciscolabs.com",
+            "dns_servers": [
+                "10.101.128.15",
+                "10.101.128.16"
+            ],
+            "license_type": "enterprise",
+            "ntp_servers": [
+                "10.101.128.15",
+                "10.101.128.16"
+            ],
+            "serial": "FCH26017171",
+            "timezone": "America/Detroit",
+            "vcenter": "asgard-vcenter.rich.ciscolabs.com",
+            "vhbas": {
+                "HBA-B": {
+                    "wwpn_address": "20:00:00:25:B5:00:B0:0E"
+                },
+                "HBA-A": {
+                    "wwpn_address": "20:00:00:25:B5:00:A0:0E"
+                }
+            },
+            "vswitches": [
+                {
+                    "name": "vswitch0",
+                    "type": "standard",
+                    "maca": "00:25:B5:00:A0:0E",
+                    "macb": "00:25:B5:00:B0:0E",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk0": {
+                            "ip": "10.92.101.58",
+                            "management": "true",
+                            "name": "vmk0",
+                            "netmask": "255.255.255.0",
+                            "port_group": "Management Network",
+                            "vlan_id": "",
+                            "vmotion": "false",
+                            "vswitch": "vswitch0"
+                        }
+                    }
+                },
+                {
+                    "name": "Odin",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:C0:0E",
+                    "macb": "00:25:B5:00:D0:0E",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk1": {
+                            "ip": "10.92.102.58",
+                            "management": "false",
+                            "name": "vmk1",
+                            "netmask": "255.255.255.0",
+                            "port_group": "prod|nets|vMotion",
+                            "vlan_id": "",
+                            "vmotion": "true",
+                            "vswitch": "Odin"
+                        }
+                    }
+                },
+                {
+                    "name": "Loki",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:E0:0E",
+                    "macb": "00:25:B5:00:F0:0E",
+                    "mtu": 9000,
+                    "vmks": {
+                        "vmk2": {
+                            "ip": "10.92.103.58",
+                            "management": "false",
+                            "name": "vmk2",
+                            "netmask": "255.255.255.0",
+                            "port_group": "prod|nets|Storage",
+                            "vlan_id": "",
+                            "vmotion": "false",
+                            "vswitch": "Loki"
+                        }
+                    }
+                },
+                {
+                    "name": "Thor",
+                    "type": "vds",
+                    "maca": "00:25:B5:00:10:0E",
+                    "macb": "00:25:B5:00:20:0E",
                     "mtu": 9000,
                     "vmks": {}
                 }
