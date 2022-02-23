@@ -39,7 +39,7 @@ ucs_server_profile_templates = {
     #
     # Network Configuration
     #___________________________
-    lan_connectivity_policy = "VMware_LAN"
+    lan_connectivity_policy = "VMware_LANv2"
     san_connectivity_policy = "VMware_SAN"
     tags                    = []
   }
