@@ -14,6 +14,7 @@ vsan_policies = {
         fcoe_vlan_id = 100
         name         = "kzoucs1-a"
         vsan_id      = 100
+        vsan_scope   = "Common"
       },
     }
   }
@@ -27,6 +28,7 @@ vsan_policies = {
         fcoe_vlan_id = 200
         name         = "kzoucs1-b"
         vsan_id      = 200
+        vsan_scope   = "Common"
       },
     }
   }

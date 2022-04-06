@@ -14,7 +14,7 @@ power_policies = {
     tags                = []
   }
   "9508" = {
-    power_allocation    = 5600
+    power_allocation    = 8400
     description         = "9508 Power Policy"
     power_profiling     = "Enabled"
     power_restore = "LastState"
