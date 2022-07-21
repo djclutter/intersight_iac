@@ -76,4 +76,22 @@ ucs_server_profiles = {
     ucs_server_profile_template = "VMware_M2_pxe"
     tags                        = []
   }
+  "kzoesx09" = {
+    action                      = "No-op"
+    description                 = "kzoesx09 Server Profile"
+    organization                = "default"
+    serial_number               = "FCH26137QRU"
+    server_assignment_mode      = "Static"
+    ucs_server_profile_template = "VMware_M2_pxe"
+    tags                        = []
+  }  
+  "kzoesx10" = {
+    action                      = "No-op"
+    description                 = "kzoesx10 Server Profile"
+    organization                = "default"
+    serial_number               = "FCH26137Q5L"
+    server_assignment_mode      = "Static"
+    ucs_server_profile_template = "VMware_M2_pxe"
+    tags                        = []
+  }
 }
